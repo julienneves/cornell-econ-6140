@@ -1,0 +1,225 @@
+% Class Notes Template
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage[utf8]{inputenc}
+
+% Packages
+\usepackage[french, english]{babel}
+\usepackage{amsmath, amsthm, amssymb ,amsfonts, graphics, tikz, float, enumerate}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstset{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{blue}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+% Title
+\title{ECON 6140 - Problem Set \# 1}
+\date{\today}
+\author{Julien Manuel Neves}
+
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{set-up}[theorem]{Set-up}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}[theorem]{Axiom}
+
+% Usefuls Macros
+\newcommand{\field}[1]{\mathbb{#1}}
+\newcommand{\N}{\field{N}} % natural numbers
+\newcommand{\R}{\field{R}} % real numbers
+\newcommand{\Z}{\field{Z}} % integers
+\newcommand\F{\mathcal{F}}
+\newcommand\B{\mathbb{B}}
+\renewcommand{\Re}{\R} % reals
+\newcommand{\Rn}[1]{\mathbb{R}^{#1}}
+\newcommand{\1}{{\bf 1}} % vector of all 1's
+\newcommand{\I}[1]{\mathbb{I}_{\left\{#1\right\}}} % indicator function
+\newcommand{\La}{\mathscr{L}}
+% \newcommand{\tends}{{\rightarrow}} % arrow for limits
+% \newcommand{\ra}{{\rightarrow}} % abbreviation for right arrow
+% \newcommand{\subjectto}{\mbox{\rm subject to}} % subject to
+
+%% math operators
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator*{\minimize}{minimize}
+\DeclareMathOperator{\E}{\mathsf{E}} % expectation
+\newcommand{\Ex}[1]{\E\left\{#1\right\}} % expectation with brackets
+\DeclareMathOperator{\pr}{\mathsf{P}} % probability
+\newcommand{\prob}[1]{\pr\left\{#1\right\}}
+\DeclareMathOperator{\subjectto}{{s.t.\ }} % subject to
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\card}[1]{\left|#1\right|}
+
+% Extra stuff
+\newcommand\seq[1]{\{ #1 \}}
+\newcommand{\inp}[2]{\langle #1, #2 \rangle}
+
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\pa}[1]{\left(#1\right)}
+\newcommand{\bra}[1]{\left[#1\right]}
+\newcommand{\cbra}[1]{\left\{ #1 \right\}}
+
+\newcommand{\pfrac}[2]{\pa{\frac{#1}{#2}}}
+\newcommand{\bfrac}[2]{\bra{\frac{#1}{#2}}}
+
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\pmat}[1]{\pa{\mat{#1}}}
+\newcommand{\bmat}[1]{\bra{\mat{#1}}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Kuhn-Tucker conditions}
+
+For the Kuhn-Tucker conditions to be satisfied, we need $f_0$, $f_1$ and $f_2$ to be concave, continuous functions from $S$ (convex) into $\R$.
+
+By setting $S= \R^2$, we have at least satisfy one condition. Sadly, it is straightforward to see that $f_0(x,y)=x^2$ and $f_1(x,y)=(1-x)^3-y$ while continuous are not concave. 
+
+
+In fact, this problem KKT conditions yields only necessary conditions for local maximum. 
+
+KKT:
+\begin{align*}
+	2x &  = 3\lambda (1-x)^2\\
+	\mu & = \lambda \\
+	\lambda((1-x)^3-y) &=0\\
+	\mu y& =0\\
+	\lambda & \geq 0 \\
+	\mu & \geq 0 \\
+\end{align*}
+
+One possible candidate could be $(0,0)$, but any point where $x<0$ and $y=0$ will yield be an improvement. Additionally, if let $x\to \infty$ and $y=0$, $x^2$ will go to infinity and the constraints will be satisfy. Hence, our problem is unbounded.
+
+\section*{Optimal equilibrium allocations}
+Let $u'(0)=\infty$ and $u'(\infty)=0$. 	Since there's no capital accumulation, we have $k_1=k_2=0$.
+\begin{enumerate}[(1)]
+
+	\item 
+	
+	Household constraint:
+\[
+p_1[b-c_1]+p_2[e-rb-c_2]\geq 0 
+\]
+where $r=f'(k_0)$.
+	\item 
+	
+	Since there is no firm, the household's problem is the same as the planner's problem, i.e. 
+	\begin{align*}
+	\max_{c_1,c_2} u(c_1)+\beta u(c_2) \\
+	\subjectto b-c_1 & \geq 0 \\
+	e-rb-c_2 & \geq 0\\
+	c_1,c_2& \geq 0 
+	\end{align*}
+	where $r=f'(k_0)$.
+	
+	\item 
+	We need $u$ and the constraints to be continuous, strictly increasing and concave functions.
+	\item 
+	
+	Let $b$ be the total amount borrowed and $b_H$ the amount borrowed at price $h'(k_0)$.
+	
+	Then, the household problem is the following:
+		\begin{align*}
+	\max_{c_1,c_2} u(c_1)+\beta u(c_2) \\
+	\subjectto b-c_1 & \geq 0 \\
+  e - h'(k_0)b_H-f'(k_0)(b-b_H) -c_2 & \geq 0\\
+b-b_H	& \geq 0\\
+	\bar{b}-b& \geq 0\\
+	c_1,c_2& \geq 0 
+	\end{align*}
+	
+	The Lagrangian is given by:
+	\[
+	\mathcal{L} = u(c_1)+\beta u(c_2) + \lambda_1 [b-c_1]
+	+ \lambda_2 [ e - h'(k_0)b_H-f'(k_0)(b-b_H) -c_2]
+	+ \mu_1 [b-b_H]
+	+ \mu_2  [\bar{b}-b] + \psi_1c_1+\psi_2c_2
+	\]
+	
+	KKT:
+	\begin{align*}
+		& u'(c_1) + \psi_1 =\lambda_1 \\
+		& \beta u'(c_2)+ \psi_2=\lambda_2 \\
+		& \lambda_1 -f'(k_0)\lambda_2 +\mu_1-\mu_2 = 0\\
+		&\lambda_2[f'(k_0)-h'(k_0)] -\mu_1 = 0\\
+		&\lambda_1 [b-c_1]=0\\
+		&\lambda_2 [ e - h'(k_0)b_H-f'(k_0)(b-b_H) -c_2]=0\\
+		& \mu_1 [b-b_H]=0\\
+		& \mu_2  [\bar{b}-b]=0\\
+		& \psi_1c_1=0\\
+		& \psi_2c_2=0\\
+		&\lambda_1 \geq 0,\lambda_2 \geq 0\\
+		& \mu_1 \geq 0,\mu_2  \geq 0\\
+		& \psi_1 \geq 0,\psi_2  \geq 0\\
+	\end{align*}
+	
+	Note that if $u(\cdot)$ is well-behave, we need $\lambda_1,\lambda_2>0$ which in turns implies $\mu_1>0$, i.e. $b=b_H$.
+	
+	Additionally, we have $\psi_1=0$ and $\psi_2=0$.
+	
+	Then, we have two cases
+	\begin{enumerate}[(i)]
+		\item $\mu_2=0$
+		
+		Then,
+		\[
+		u'(c_1)=\beta h'(k_0)u'(c_2)
+		\]
+		where $c_1 = b$ and $c_2 =  e - h'(k_0)b$.
+		
+		Hence,
+			\begin{align*}
+		h'(\cdot)\uparrow & \to c_1 \downarrow, c_2\uparrow, b\downarrow\\
+		e\uparrow & \to c_1 \uparrow, c_2\uparrow, b\downarrow\\
+		\bar{b}\uparrow & \to c_1 -, c_2-, b-
+		\end{align*}
+		\item $\mu_2>0$
+				Then,
+		\[
+		u'(c_1)=\beta h'(k_0)u'(c_2) +\mu_2 > \beta h'(k_0)u'(c_2)
+		\]
+		where $c_1 = \bar{b}$ and $c_2 =  e - h'(k_0)\bar{b}$.
+				Hence,
+		\begin{align*}
+		h'(\cdot)\uparrow & \to c_1 \downarrow, c_2\uparrow, b\downarrow\\
+		e\uparrow & \to c_1 \uparrow, c_2\uparrow, b\downarrow\\
+		\bar{b}\uparrow & \to c_1 \uparrow, c_2\downarrow, b\uparrow
+		\end{align*}
+	\end{enumerate}
+	
+	Hence, if the shadow value of $\bar{b}$ is 0, the borrowing limit is not reach the Euler equation holds with equality. If the shadow value of $\bar{b}$ is strictly positive, then we run into some problems because the consumer would like to borrow more than $\bar{b}$ since the marginal utility of consumption in period 1 is higher than its marginal cost. Note that while the marginal utility of consumption is not equal to its marginal cost in the case of $\mu_2>0$, the consumer could do better if he could borrow more money. 
+	
+	Thus, is the situation Pareto efficient? Well, there's only one consumer. Hence, it is impossible to make him better off while making no one else worst off since he is alone in this economy and already maximizing according to the constraints.
+\end{enumerate}
+
+\end{document}

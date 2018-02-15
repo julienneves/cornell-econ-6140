@@ -1,0 +1,390 @@
+% Class Notes Template
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage[utf8]{inputenc}
+
+% Packages
+\usepackage[french, english]{babel}
+\usepackage{amsmath, amsthm, amssymb ,amsfonts, graphics, tikz, float, enumerate}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstset{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{blue}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+% Title
+\title{ECON 6140 - Problem Set \# 2}
+\date{\today}
+\author{Julien Manuel Neves}
+
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{set-up}[theorem]{Set-up}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}[theorem]{Axiom}
+
+% Usefuls Macros
+\newcommand{\field}[1]{\mathbb{#1}}
+\newcommand{\N}{\field{N}} % natural numbers
+\newcommand{\R}{\field{R}} % real numbers
+\newcommand{\Z}{\field{Z}} % integers
+\newcommand\F{\mathcal{F}}
+\newcommand\B{\mathbb{B}}
+\renewcommand{\Re}{\R} % reals
+\newcommand{\Rn}[1]{\mathbb{R}^{#1}}
+\newcommand{\1}{{\bf 1}} % vector of all 1's
+\newcommand{\I}[1]{\mathbb{I}_{\left\{#1\right\}}} % indicator function
+\newcommand{\La}{\mathscr{L}}
+% \newcommand{\tends}{{\rightarrow}} % arrow for limits
+% \newcommand{\ra}{{\rightarrow}} % abbreviation for right arrow
+% \newcommand{\subjectto}{\mbox{\rm subject to}} % subject to
+
+%% math operators
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator*{\minimize}{minimize}
+\DeclareMathOperator{\E}{\mathsf{E}} % expectation
+\newcommand{\Ex}[1]{\E\left\{#1\right\}} % expectation with brackets
+\DeclareMathOperator{\pr}{\mathsf{P}} % probability
+\newcommand{\prob}[1]{\pr\left\{#1\right\}}
+\DeclareMathOperator{\subjectto}{{s.t.\ }} % subject to
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\card}[1]{\left|#1\right|}
+
+% Extra stuff
+\newcommand\seq[1]{\{ #1 \}}
+\newcommand{\inp}[2]{\langle #1, #2 \rangle}
+
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\pa}[1]{\left(#1\right)}
+\newcommand{\bra}[1]{\left[#1\right]}
+\newcommand{\cbra}[1]{\left\{ #1 \right\}}
+
+\newcommand{\pfrac}[2]{\pa{\frac{#1}{#2}}}
+\newcommand{\bfrac}[2]{\bra{\frac{#1}{#2}}}
+
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\pmat}[1]{\pa{\mat{#1}}}
+\newcommand{\bmat}[1]{\bra{\mat{#1}}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Government expenditure, corruption and output}
+
+\begin{enumerate}[(1)]
+	\item 
+	The social planner problem is the following:
+	\begin{align*}
+		\max_{c_t,l_t,n_t,k_{t+1}, c_t^g, x_t} &\sum_{t=0}^{\infty} \beta^t \left\lbrace u(c_t,l_t) +v(c_t^g) \right\rbrace \\
+		\subjectto c_t+x_t+g_t & \leq zf(n_t,k_t)\\
+		k_{t+1} & \leq(1-\delta_k)k_t+x_{kt}\\
+		n_t+l_t &\leq 1\\
+		c_t^g& = \theta g_t\\
+		c_t,l_t,n_t,k_{t+1}, c_t^g, x_t & \geq 0
+	\end{align*}
+	
+	Hence, the feasibility constraints are the following:
+	\begin{enumerate}[(i)]
+		\item $c_t+x_t+g_t  \leq zf(n_t,k_t)$ - Total production has to be bigger than private consumption, investment and government spending.
+		\item $k_{t+1}  \leq(1-\delta_k)k_t+x_{kt}$ - Investment constraint for capital.
+		\item $n_t+l_t \leq 1$ - Time constraint for labor/leisure.
+		\item $c_t^g = \theta g_t$ - Fraction of government spending not wasted and used to purchase the public consumption good.
+		\item $c_t,l_t,n_t,k_{t+1}, c_t^g, x_t  \geq 0$ - Non-negativity constraints for the variables.
+	\end{enumerate}
+	\item 
+	
+	To describe the interior solution, we need the first order conditions, the resource constraint and a transversality condition. Note that for this problem every constraint is binding. Moreover, if $g$ is small enough, we have that $c_t,l_t,n_t,k_{t+1}, c_t^g, x_t $ are strictly positive. Hence, these conditions can be summarized in the following way
+		\begin{align*}
+		c_{t}&: u_c(c_t,l_t)-\lambda_t=0\\
+		c_{t}^g&:v_c(c_t^g)-\eta_t=0\\
+		n_{t}&:\lambda_tzf_n(n_t,k_t)-\psi_t  =0\\
+		l_{t}&:u_l(c_t,l_t)-\psi_t  =0\\
+		x_{t}&:\mu_t-\lambda_t  =0 \\
+		k_{t+1}&:\beta \lambda_{t+1}zf_k(n_{t+1},k_{t+1})+\beta\mu_{t+1}(1-\delta_k)-\mu_t  =0 \\
+	&:c_t+x_t+g_t  \leq zf(n_t,k_t)\\
+	&:k_{t+1}  \leq(1-\delta_k)k_t+x_{kt}\\
+	&:n_t+l_t \leq 1\\
+	&:c_t^g = \theta g_t\\
+	TVC&:\lim_{T\to \infty}\beta^Tu_c(c_T,l_T)k_{T+1}  =0
+	\end{align*}
+	
+	This can be simplified to
+			\begin{align*}
+	u_c(c_t,1-n_t)&=\lambda_t\\
+	v_c(\theta g_t)&=\eta_t\\
+	\lambda_tzf_n(n_t,k_t)&=\psi_t \\
+	u_l(c_t,1-n_t)&=\psi_t\\
+	\mu_t&=\lambda_t  \\
+	\beta \lambda_{t+1}zf_k(n_{t+1},k_{t+1})+\beta\mu_{t+1}(1-\delta_k)& =\mu_t \\
+	c_t+k_{t+1} -(1-\delta_k)k_t+g_t  & = zf(n_t,k_t)\\
+	\lim_{T\to \infty}\beta^Tu_c(c_T,1-n_T)k_{T+1}  &=0
+	\end{align*}
+	
+	
+	
+	\item 
+	
+	In steady state, our conditions are the following
+				\begin{align*}
+	u_c(c,1-n)&=\lambda\\
+	v_c(\theta g)&=\eta\\
+	\lambda zf_n(n,k)&=u_l(c,1-n) \\
+	\beta [ zf_k(n,k)+(1-\delta_k)]& =1 \\
+	c+\delta_kk+g  & = zf(n,k)
+	\end{align*}
+	
+	For $\beta [ zf_k(n,k)+(1-\delta_k)] =1$ to hold, we need the following conditions
+	\begin{align*}
+	\lim_{k_t\to 0} zf_k(n_t,k_t)& > \frac{1}{\beta}-(1-\delta_k)\\
+	\lim_{k_t\to \infty} zf_k(n_t,k_t)&<\frac{1}{\beta}-(1-\delta_k)
+	\end{align*}
+	
+	
+	Now, we need to show that $c>0$. Let $g=0$. The fourth condition implies that
+	\[
+	zf(n,k)>\delta_k k
+	\]
+	
+	This holds if we have
+		\[
+	zf_k(n,k)>\delta_k 
+	\]
+	
+	Since at the steady state we have $ zf_k(n_t,k_t)= \frac{1}{\beta}-(1-\delta_k)$, we simply need the condition that 
+	\[
+	\frac{1}{\beta}-(1-\delta_k)>\delta_k
+	\]
+	
+	This is true for $\beta\in (0,1)$. For $g$ small enough, we can simply extend the previous analysis due to continuity.
+	
+	\item 
+		\begin{enumerate}[(a)]
+			\item 
+			For $f$ homogeneous of degree 1, we have $f_k$ homogeneous of degree 0. Therefore,
+			\[
+			\beta \left[  zf_k\left( 1,\frac{k}{n}\right) +(1-\delta_k)\right]  =1
+			\]
+			
+			Since $g$ does not enter this condition, we need $\frac{k}{n}$ to remain constant.
+			\item 
+			
+		Let $g\uparrow$, then the budget constraint implies that $zf(n,k)-g$ the amount of disposable income decreases. By the characterization of normality defined in the problem set, we have $c \downarrow$ and $l \downarrow$. Therefore, $n\uparrow$.
+			\item 
+			
+				Let $g\uparrow$. For $\frac{k}{n}$ to be constant, we need $k\uparrow$ since  $n\uparrow$. Note that $f(\cdot)$ is increasing in both $k$ and $n$, therefore $zf(k,n)\uparrow$, i.e. the output per worker increases if $g\uparrow$.
+		\end{enumerate}
+	\item 
+		\begin{enumerate}[(a)]
+			\item 
+			
+						For $f$ homogeneous of degree 1, we have $f_k$ homogeneous of degree 0. Therefore,
+			\[
+			\beta \left[  zf_k\left( 1,\frac{k}{n}\right) +(1-\delta_k)\right]  =1
+			\]
+			
+			Since $\theta$ does not enter this condition, we need $\frac{k}{n}$ to remain constant.
+			\item 
+			
+			Note that $\theta$ does not affect the choice of $n$, since it only appears to affect $c^g$ which is separable from $l$ and $c$. Hence, $n$ will remain constant.
+			\item 
+			
+			Since $n$ is constant for any movement in $\theta$ and  $\frac{k}{n}$ is also constant, we have that $f(k,n)$ stays the same. Hence, the output per worker is also constant.
+			
+		\end{enumerate}
+\end{enumerate}
+
+
+\section*{Skill-biased technical change}
+
+\begin{enumerate}[(1)]
+	\item 
+	
+	First, we derived the marginal products of capital and skilled labor, i.e.
+	\begin{equation*}
+	\begin{aligned}
+			f_k(\cdot) &= \mu \lambda z (\lambda(\mu(k_t)^{\rho}+(1-\mu)(n_s)^{\rho})^{\frac{\sigma}{\rho}}+(1-\lambda)n_u^{\sigma})^{\frac{1}{\sigma}-1}(\mu(k_t)^{\rho}+(1-\mu)(n_s)^{\rho})^{\frac{\sigma}{\rho}-1}k_t^{\rho-1}\\
+	f_{n_s}(\cdot) &= (1-\mu) \lambda z (\lambda(\mu(k_t)^{\rho}+(1-\mu)(n_s)^{\rho})^{\frac{\sigma}{\rho}}+(1-\lambda)n_u^{\sigma})^{\frac{1}{\sigma}-1}(\mu(k_t)^{\rho}+(1-\mu)(n_s)^{\rho})^{\frac{\sigma}{\rho}-1}n_s^{\rho-1}
+	\end{aligned}
+	\end{equation*}
+	
+	Then, we get
+	\begin{align*}
+		\frac{f_k}{f_{n_s}} & = \left( \frac{\mu}{1-\mu}\right) \left( \frac{k}{n_s}\right)^{\rho-1}\\
+	\ln \left( \frac{f_k}{f_{n_s}}\right)  & = \ln \left(\frac{\mu}{1-\mu}\right) + (1-\rho) \ln\left( \frac{n_s}{k}\right)\\
+	  \ln\left( \frac{n_s}{k}\right)  & = \frac{1}{1-\rho} \ln \left( \frac{f_k}{f_{n_s}}\right) -  \frac{1}{1-\rho}  \ln \left(\frac{\mu}{1-\mu}\right)
+	\end{align*}
+	
+	Therefore, the elasticity of substitution between capital and skilled labor is equal to
+	\[
+	\epsilon = \frac{\partial \ln\left( \frac{n_s}{k}\right)}{\partial \ln \left( \frac{f_k}{f_{n_s}}\right)} = \frac{1}{1-\rho}
+	\]
+	
+	Note that $\epsilon$ depends only $\rho$ and it is increasing in $\rho$.
+	\item 
+	The interior point conditions can be summarized in the following way
+			\begin{align*}
+	c_{t}&: u_c(c_t,l_t)-\nu_t=0\\
+	n_{u}&:\nu_tf_{n_u}(z,k_t,n_{u},n_{s})-\psi_t=0\\
+	n_{s}&:\nu_t f_{n_s}(z,k_t,n_{u},n_{s})-\psi_t =0\\
+	l_{t}&:u_l(c_t,l_t)-\psi_t  =0\\
+	x_{t}&:\mu_t-\nu_t  =0 \\
+	k_{t+1}&:\beta \nu_{t+1}zf_n(n_{t+1},k_{t+1})+\beta\mu_{t+1}(1-\delta_k)-\mu_t  =0 \\
+	&:c_t+x_t+g_t  \leq f(z,k_t,n_{u},n_{s})\\
+	&:k_{t+1}  \leq(1-\delta_k)k_t+x_{kt}\\
+	&:n_{u}+n_{s}+l_t \leq 1\\
+	TVC&:\lim_{T\to \infty}\beta^Tu_c(c_T,l_T)k_{T+1}  =0
+	\end{align*}
+	
+	In steady state, our conditions are the following we have
+				\begin{align*}
+u_c(c,1-n_u-n_s)&=\nu\\
+f_{n_u}(z,k,n_{u},n_{s})=f_{n_s}(z,k,n_{u},n_{s}) &=\frac{u_l(c,1-n_u-n_s)}{u_c(c,1-n_u-n_s)}\\
+\beta [ f_k(z,k,n_{u},n_{s})+(1-\delta_k)]& =1 \\
+c+\delta_kk  & = f(z,k,n_{u},n_{s})
+\end{align*}
+
+
+
+	For $\beta [ f_k(z,k,n_{u},n_{s})+(1-\delta_k)] =1$ to hold, we need the following conditions
+	\begin{align*}
+\lim_{k\to 0} f_k(z,k,n_{u},n_{s})& > \frac{1}{\beta}-(1-\delta_k)\\
+\lim_{k\to \infty} f_k(z,k,n_{u},n_{s})&<\frac{1}{\beta}-(1-\delta_k)
+\end{align*}
+
+
+Now, we need to show that $c>0$. Let $g=0$. The fourth condition implies that
+\[
+f(z,k,n_{u},n_{s})>\delta_k k
+\]
+
+This holds if we have
+\[
+f_k(z,k,n_{u},n_{s})>\delta_k 
+\]
+
+
+Since at the steady state we have $ f_k(z,k,n_{u},n_{s})= \frac{1}{\beta}-(1-\delta_k)$, we simply need the condition that 
+\[
+\frac{1}{\beta}-(1-\delta_k)>\delta_k
+\]
+
+This is true for $\beta\in (0,1)$. For $g$ small enough, we can simply extend the previous analysis due to continuity.
+	
+	\item 
+	First, we derived the marginal products of unskilled and skilled labor, i.e.
+		\begin{equation*}
+	\begin{aligned}
+	f_{n_s}(\cdot) &= (1-\mu) \lambda z (\lambda(\mu(k_t)^{\rho}+(1-\mu)(n_s)^{\rho})^{\frac{\sigma}{\rho}}+(1-\lambda)n_u^{\sigma})^{\frac{1}{\sigma}-1}(\mu(k_t)^{\rho}+(1-\mu)(n_s)^{\rho})^{\frac{\sigma}{\rho}-1}n_s^{\rho-1}\\
+	f_{n_u}(\cdot) &= (1- \lambda) z (\lambda(\mu(k_t)^{\rho}+(1-\mu)(n_s)^{\rho})^{\frac{\sigma}{\rho}}+(1-\lambda)n_u^{\sigma})^{\frac{1}{\sigma}-1}n_u^{\sigma-1}
+	\end{aligned}
+	\end{equation*}
+	
+	In competitive equilibrium, we know the price of labor is equal to its marginal product. Hence, $\frac{w_s}{w_u}=\frac{f_{n_s}(\cdot)}{f_{n_u}(\cdot)}$ and
+			\begin{equation*}
+	\begin{aligned}
+	\frac{w_s}{w_u}=\frac{f_{n_s}(\cdot)}{f_{n_u}(\cdot)} &= (1-\mu)\left( \frac{\lambda}{1-\lambda}\right)  \left( \frac{n_s^{\rho-1}}{n_u^{\sigma-1}}\right)  (\mu(k_t)^{\rho}+(1-\mu)(n_s)^{\rho})^{\frac{\sigma}{\rho}-1}
+	\end{aligned}
+	\end{equation*}
+	
+	We can express this in terms of ratio and log-linearize the skill-premium in the following way
+				\begin{equation*}
+	\begin{aligned}
+	\frac{w_s}{w_u}=\frac{f_{n_s}(\cdot)}{f_{n_u}(\cdot)} &= (1-\mu)\left( \frac{\lambda}{1-\lambda}\right)  \left( \frac{n_u}{n_s}\right)^{1-\sigma}  \left( \mu\left( \frac{k}{n_s}\right)^{\rho}+(1-\mu)\right) ^{\frac{\sigma}{\rho}-1}\\
+	\ln\left( \frac{w_s}{w_u} \right) & \approx (1-\sigma) \ln \left( \frac{n_u}{n_s}\right) + \mu \left( \frac{\sigma}{\rho}-1\right)  \left( \frac{k}{n_s}\right) ^{\rho}
+	\end{aligned}
+	\end{equation*}
+	
+	For the sake of argument, I will assume that $\sigma$ is defined in a region such that $(1-\sigma)$ is positive. This implies that an increase in $\frac{n_u}{n_s}$ will increase $\frac{w_s}{w_u}$. For $\frac{k}{n_s}$ it is a bit more ambiguous than that. If $\rho>0$ then $ \frac{k}{n_s}\uparrow$ will imply an increase in $\frac{w_s}{w_u}$ and vice versa.
+	\item 
+	\begin{enumerate}[(a)]
+		\item 
+		
+		Let $h(k,n_{u},n_{s})= (\lambda(\mu(k_t)^{\rho}+(1-\mu)(n_s)^{\rho})^{\frac{\sigma}{\rho}}+(1-\lambda)n_u^{\sigma})^{\frac{1}{\sigma}}$. This implies $f(z,k,n_{u},n_{s})=zh(k,n_{u},n_{s})$ and that $h(\cdot)$ is homogeneous of degree one.
+		
+		Looking at the third condition for the steady state, we have
+				\[
+		\beta \left[  zh_k\left( \frac{k}{n_s},\frac{n_u}{n_s},1\right) +(1-\delta_k)\right]  =1
+		\]
+		
+		If $z\uparrow$, we need $h_k\left( \frac{k}{n_s},\frac{n_u}{n_s},1\right) \downarrow$ to offset this increase. Since, in equilibrium 
+		$\frac{w_s}{w_u}=\frac{f_{n_s}(\cdot)}{f_{n_u}(\cdot)} = 1$ is constant, we need that any change in $ \frac{k}{n_s}$ must be match by $\frac{n_u}{n_s}$.
+		
+		If $\rho>0$, then $ \frac{k}{n_s} \uparrow$ and $\frac{n_u}{n_s} \downarrow$ satisfy both conditions. If $\rho<0$ the situation is a bit more ambiguous, since $\frac{n_u}{n_s} \downarrow$ and $ \frac{k}{n_s} \uparrow$ both decrease $\frac{w_s}{w_u}$. Hence, we need either $ \frac{k}{n_s} \downarrow$ or $\frac{n_u}{n_s} \uparrow$. Let's assume for the moment that $\rho>0$, i.e. $ \frac{k}{n_s} \uparrow$ for $z\uparrow$.
+		\item 
+		
+		If $z \uparrow$ and $\rho>0$, we have $ \frac{k}{n_s} \uparrow$ and $\frac{n_u}{n_s} \downarrow$ which implies that $h\left(\cdot \right) \uparrow$. In turns, this yield that $zh(\cdot) \uparrow$, i.e. output per worker increase for an increase in $z$.
+		\item
+		
+		Note that the skill premium is constant and equal to 1. Therefore, it does not change.
+	\end{enumerate}
+
+	\item 
+	\begin{enumerate}[(a)]
+		\item 
+		
+				Looking at the third condition for the steady state, we have
+		\[
+		\beta \left[  zh_k\left( \frac{k}{n_s},\frac{n_u}{n_s},1\right) +(1-\delta_k)\right]  =1
+		\]
+		
+		If  $\frac{n_u}{n_s} \uparrow$, we need $\frac{k}{n_s}$ to offset the increase in $h_k\left( \frac{k}{n_s},\frac{n_u}{n_s},1\right)$, i.e $\frac{k}{n_s} \uparrow$. Therefore an increase in relative supply of skill to unskill workers will imply an increase in $\frac{k}{n_s}$.
+		
+		\item 
+		
+		Note that an increase in both $\frac{n_u}{n_s} \uparrow$ and $\frac{k}{n_s} \uparrow$ implies that $f(\cdot)\uparrow$. Thus, the output per worker will also increase.
+	
+		\item 
+		
+	Note that the skill premium is constant and equal to 1. Therefore, it does not change. Now, this seems to be a mistake since by the previous discussion
+					\begin{equation*}
+	\begin{aligned}
+	\frac{w_s}{w_u}=\frac{f_{n_s}(\cdot)}{f_{n_u}(\cdot)} &= (1-\mu)\left( \frac{\lambda}{1-\lambda}\right)  \left( \frac{n_u}{n_s}\right)^{1-\sigma}  \left( \mu\left( \frac{k}{n_s}\right)^{\rho}+(1-\mu)\right) ^{\frac{\sigma}{\rho}-1}\\
+	\ln\left( \frac{w_s}{w_u} \right) & \approx (1-\sigma) \ln \left( \frac{n_u}{n_s}\right) + \mu \left( \frac{\sigma}{\rho}-1\right)  \left( \frac{k}{n_s}\right) ^{\rho}
+	\end{aligned}
+	\end{equation*}
+	should govern the movement of the skill-premium with changes in  $\frac{n_u}{n_s} $ and $\frac{k}{n_s}$.  I'm therefore unsure, if  $\frac{w_s}{w_u}=\frac{f_{n_s}(\cdot)}{f_{n_u}(\cdot)} = (1-\mu)\left( \frac{\lambda}{1-\lambda}\right)  \left( \frac{n_u}{n_s}\right)^{1-\sigma}  \left( \mu\left( \frac{k}{n_s}\right)^{\rho}+(1-\mu)\right) ^{\frac{\sigma}{\rho}-1}$ applies or $\frac{w_s}{w_u}=1$ .
+	\end{enumerate}
+
+	\item
+	
+	To explore the effect of $\lambda$ on $\frac{w_s}{w_u}$, we take the equation derived previously and compute its derivate with respect to $\lambda$, i.e.
+	\[
+	\frac{\partial \frac{w_s}{w_u}}{\partial \lambda} = \frac{1}{(1-\lambda)^2}>0
+	\]
+	
+	Therefore, as $\lambda \uparrow$, we have $\frac{w_s}{w_u} \uparrow$. 
+	
+\end{enumerate}
+
+
+\end{document}
