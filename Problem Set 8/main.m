@@ -8,23 +8,23 @@ param.se=sqrt(0.06);
 param.k = 5;
 [param, ro_ta5, se_ta5] = transition(param, "tauchen");
 param.k = 10;
-[param, ro_ta10, se_ta10] = transition(param, "tauchen");
+[param, ro_ta10, se_ta10] = transition(param,  "tauchen");
 
 tab_1b = table([param.ro; ro_ta5; ro_ta10],[param.se; se_ta5; se_ta10],'VariableNames',{'rho','se'},'RowNames',{'Model';'Five';'Ten'})
 
 % part c)
 param.k = 5;
-[param, ro_rw, se_rw] = transition(param, "rouwenhorst");
+[param, ro_rw, se_rw] = transition(param,  "rouwenhorst");
 
-tab_1c = table([param.ro; ro_ta5; ro_rw],[param.se; se_ta5; se_rw],'VariableNames',{'rho','se'},'RowNames',{'Model';'Tauchen';'Rouwenhorst'})
+tab_1c = table([param.ro; ro_ta5; ro_rw],[param.se; se_ta5; se_rw],'VariableNames',{'rho','se'},'RowNames',{'Model'; "tauchen"; "rouwenhorst"})
 
 % part d)
 old_var = param.se^2/(1-param.ro^2);
 param.ro = 0.98;
 param.se = old_var*(1-param.ro^2);
-[param, ro_rw, se_rw] = transition(param, "rouwenhorst");
+[param, ro_rw, se_rw] = transition(param,  "rouwenhorst");
 
-tab_1d = table([param.ro;ro_rw],[param.se;se_rw],'VariableNames',{'rho','se'},'RowNames',{'Model';'Rouwenhorst'})
+tab_1d = table([param.ro;ro_rw],[param.se;se_rw],'VariableNames',{'rho','se'},'RowNames',{'Model'; "rouwenhorst"})
 
 %% Problem 2
 % declare parameters
@@ -38,7 +38,7 @@ param.n = 25;
 param.k = 5;
 
 % part a)
-[param] = transition(param, "rouwenhorst");
+[param] = transition(param,  "rouwenhorst");
 [param,c,fspace,s,smin,smax] = policy_ip(param);
 
 close all
@@ -59,10 +59,11 @@ subplot(2,1,2)
 sfine=gridmake(0,nodeunif(param.k*4,smin(2),smax(2)));
 xfine=funeval(c,fspace,sfine);
 plot(exp(sfine(:,2)),xfine)
-xlabel('$e^{y}$','Interpreter','latex')
+xlabel('$y$','Interpreter','latex')
 ylabel('$x(0,y)$','Interpreter','latex')
 title({'Consumption policy function, $a=0$'},'Interpreter','latex')
 set(gca,'FontSize',8);
+print -depsc fig1.eps
 
 figure(2)
 subplot(2,1,1)
@@ -82,14 +83,14 @@ xlabel('$e^y$','Interpreter','latex')
 ylabel('$a^{\prime}(0,\bar{y})$','Interpreter','latex')
 title({'Savings policy function, $a=0$'},'Interpreter','latex')
 set(gca,'FontSize',8);
-
+print -depsc fig2.eps
 
 % part b)
 gamma = [1,2,5];
 for i = 1:3
     param.gamma = gamma(i);
     
-    [param] = transition(param, "rouwenhorst");
+    [param] = transition(param,  "rouwenhorst");
     [param,c,fspace] = policy_ip(param);
     
     con = markovchain(param,c,fspace, 10000); % Generate Markov chain
@@ -103,17 +104,25 @@ tab_2b = table(se_c','VariableNames',{'std_c'},'RowNames',{'Gamma = 1';'Gamma = 
 param.gamma = 2;
 se = [0.01,0.06,0.12];
 
+figure(3)
+hold on
 for i = 1:3
     param.se = sqrt(se(i));
     
-    [param] = transition(param, "rouwenhorst");
+    [param] = transition(param,  "rouwenhorst");
     [param,c,fspace] = policy_ip(param);
     
-    con = markovchain(param,c,fspace, 10000); % Generate Markov chain
-    saving_ratio(i) = std(con);
+    sfine=gridmake(0,nodeunif(param.k*4,smin(2),smax(2)));
+    xfine=funeval(c,fspace,sfine);
+    plot(exp(sfine(:,2)),1-xfine./exp(sfine(:,2)))
 end
-
-tab_2c = table(saving_ratio','VariableNames',{'saving'},'RowNames',{'Gamma = 1';'Gamma = 2';'Gamma = 5'})
+xlabel('$e^y$','Interpreter','latex')
+ylabel('$a^{\prime}(0,y)/y$','Interpreter','latex')
+title({'Savings rate, $a=0$'},'Interpreter','latex')
+legend('Gamma = 1','Gamma = 2','Gamma = 5')
+set(gca,'FontSize',8);
+hold off
+print -depsc fig3.eps
 
 
 % part d) - e)
@@ -122,7 +131,7 @@ param.gamma = 2;
 param.se = sqrt(0.06);
 param.amin = 0;
 
-[param] = transition(param, "rouwenhorst");
+[param] = transition(param,  "rouwenhorst");
 [param,c,fspace] = policy_ip(param);
 
 [con, s] = markovchain(param,c,fspace, 10000);
@@ -136,7 +145,7 @@ phi(1) = 1-sig(1,2)/sig(2,2);
 % natural debt limit
 param.amin = -min(exp(param.ygrid)+.01)/param.r;
 
-[param] = transition(param, "rouwenhorst");
+[param] = transition(param,  "rouwenhorst");
 [param,c,fspace] = policy_ip(param);
 
 [con, s] = markovchain(param,c,fspace, 10000);
@@ -154,7 +163,7 @@ tab_2d = table(avg_c',phi','VariableNames',{'mean_c','phi'},'RowNames',{'No borr
 % declare parameters
 param.beta=0.95;
 param.r=0.02;
-param.ro=0;
+param.ro=0.9;
 param.se=sqrt(0.06);
 param.gamma=2;
 param.amin = 0;
@@ -167,51 +176,48 @@ wbar = -param.se^2/2;
 fprintf('E(y)=%f \n',exp(x)'*w)
 
 % part c)
-param.ygrid = x;
-param.ws = w;
-
+[param] = transition(param,  "rouwenhorst");
 [param,c,fspace,s,smin,smax] = policy_ca(param);
 
-% sfine=gridmake(nodeunif(n(1)*2,smin(1),smax(1)),param.ygrid);
-% xfine=funeval(c,fspace,sfine);
+sfine=gridmake(nodeunif(param.n(1)*2,smin(1),smax(1)),param.ygrid);
+xfine=funeval(c,fspace,sfine);
 
-% figure(3)
-% subplot(2,1,1)
-% sfine=gridmake(nodeunif(param.n*4,smin(1),smax(1)),0); %ygrid(floor(k/2)+2));
-% xfine=funeval(c,fspace,sfine);
-% plot(sfine(:,1),xfine)
-% xlabel({'$a$'},'Interpreter','latex')
-% ylabel({'$x(a,\bar{y})$'},'Interpreter','latex')
-% title({'Consumption policy function, $y=\bar{y}$'},'Interpreter','latex')
-% set(gca,'FontSize',8);
-% 
-% subplot(2,1,2)
-% sfine=gridmake(0,nodeunif(param.k*4,smin(2),smax(2)));
-% xfine=funeval(c,fspace,sfine);
-% plot(exp(sfine(:,2)),xfine)
-% xlabel('$e^{y}$','Interpreter','latex')
-% ylabel('$x(0,y)$','Interpreter','latex')
-% title({'Consumption policy function, $a=0$'},'Interpreter','latex')
-% set(gca,'FontSize',8);
-% 
-% figure(4)
-% subplot(2,1,1)
-% sfine=gridmake(nodeunif(param.k*4,smin(1),smax(1)),0);
-% xfine=funeval(c,fspace,sfine);
-% plot(sfine(:,1),(1+param.r)*sfine(:,1)+exp(sfine(:,2))-xfine)
-% xlabel('$a$','Interpreter','latex')
-% ylabel('$a^{\prime}(a,\bar{y})$','Interpreter','latex')
-% title({'Savings policy function, $y=\bar{y}$'},'Interpreter','latex')
-% set(gca,'FontSize',8);
-% 
-% subplot(2,1,2)
-% sfine=gridmake(0,nodeunif(param.k*4,smin(2),smax(2)));
-% xfine=funeval(c,fspace,sfine);
-% plot(exp(sfine(:,2)),(1+param.r)*sfine(:,1)+exp(sfine(:,2))-xfine)
-% xlabel('$e^y$','Interpreter','latex')
-% ylabel('$a^{\prime}(0,\bar{y})$','Interpreter','latex')
-% title({'Savings policy function, $a=0$'},'Interpreter','latex')
-% set(gca,'FontSize',8);
-% 
-% 
-% 
+figure(4)
+subplot(2,1,1)
+sfine=gridmake(nodeunif(param.n*4,smin(1),smax(1)),0); %ygrid(floor(k/2)+2));
+xfine=funeval(c,fspace,sfine);
+plot(sfine(:,1),xfine)
+xlabel({'$x$'},'Interpreter','latex')
+ylabel({'$c(x,\bar{y})$'},'Interpreter','latex')
+title({'Consumption policy function, $y=\bar{y}$'},'Interpreter','latex')
+set(gca,'FontSize',8);
+
+subplot(2,1,2)
+sfine=gridmake(smin(1),nodeunif(param.k*4,smin(2),smax(2)));
+xfine=funeval(c,fspace,sfine);
+plot(exp(sfine(:,2)),xfine)
+xlabel('$y$','Interpreter','latex')
+ylabel('$c(y^{min},y)$','Interpreter','latex')
+title({'Consumption policy function, $a=0$'},'Interpreter','latex')
+set(gca,'FontSize',8);
+print -depsc fig4.eps
+
+figure(5)
+subplot(2,1,1)
+sfine=gridmake(nodeunif(param.k*4,smin(1),smax(1)),0);
+xfine=funeval(c,fspace,sfine);
+plot(sfine(:,1),(1+param.r)*(sfine(:,1)-xfine)+exp(sfine(:,2)))
+xlabel('$x$','Interpreter','latex')
+ylabel('$x^{\prime}(x,\bar{y})$','Interpreter','latex')
+title({'Savings policy function, $y=\bar{y}$'},'Interpreter','latex')
+set(gca,'FontSize',8);
+
+subplot(2,1,2)
+sfine=gridmake(0,nodeunif(param.k*4,smin(2),smax(2)));
+xfine=funeval(c,fspace,sfine);
+plot(exp(sfine(:,2)),(1+param.r)*sfine(:,1)+exp(sfine(:,2))-xfine)
+xlabel('$y$','Interpreter','latex')
+ylabel('$x^{\prime}(0,\bar{y})$','Interpreter','latex')
+title({'Savings policy function, $a=0$'},'Interpreter','latex')
+set(gca,'FontSize',8);
+print -depsc fig5.eps

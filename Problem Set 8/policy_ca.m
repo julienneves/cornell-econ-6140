@@ -3,7 +3,7 @@ function [param,c,fspace,s,smin,smax] = policy_ca(param)
 ymin=min(param.ygrid);
 ymax=max(param.ygrid);
 
-xmin = ymin;                        % no borrowing
+xmin = exp(ymin);                        % no borrowing
 xmax = 10*exp(ymax);             % guess an upper bound on a, check later that do not exceed it
 
 % Declare function space to approximate a'(a,y)
@@ -25,7 +25,7 @@ c=funfitxy(fspace,s,param.r/(1+param.r)*s(:,1)+exp(s(:,2)));                %gue
 tic
 for it=1:101
     cnew=c;
-    x = solve_ca(param,c,fspace,s, xmin);
+    x = solve_ca(param,c,fspace,s);
     c=funfitxy(fspace,s,x);
     
     fprintf('%4i %6.2e\n',[it,norm(c-cnew)]);

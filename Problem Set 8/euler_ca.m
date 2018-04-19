@@ -2,7 +2,7 @@ function fval = euler_ca(x,c,fspace,s,param)
 
 ns=size(s,1);
 y=exp(s(:,2));
-xprime=(1+param.r)*(s(:,1)-x)+y;
+xprime = (1+param.r)*(s(:,1)-x)+y;
 fval=x.^(-param.gamma);
 as=ns/length(param.ygrid);
 

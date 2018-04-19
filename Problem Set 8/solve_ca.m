@@ -5,11 +5,11 @@ function [x] = solve_ca(param,c, fspace, s)
 ns=length(s);
 
 a=.01*ones(ns,1);
-b=(1+param.r)*s(:,1)+exp(s(:,2));
+b=s(:,1)+exp(s(:,2))/(1+param.r);
 tol=1e-8; %tolerance level
 
-fa=euler_ip(a,c,fspace,s,param);
-fb=euler_ip(b,c,fspace,s,param);
+fa=euler_ca(a,c,fspace,s,param);
+fb=euler_ca(b,c,fspace,s,param);
 
 x=zeros(ns,1);
 
@@ -24,7 +24,7 @@ i=0;
   while any(abs(dx)>tol)
    i=i+1;
     dx = 0.5*dx;
-    x = x - sign(euler_ip(x,c,fspace,s,param)).*dx;   
+    x = x - sign(euler_ca(x,c,fspace,s,param)).*dx;   
   end
 
 
