@@ -16,7 +16,7 @@ tab_1b = table([param.ro; ro_ta5; ro_ta10],[param.se; se_ta5; se_ta10],'Variable
 param.k = 5;
 [param, ro_rw, se_rw] = transition(param,  "rouwenhorst");
 
-tab_1c = table([param.ro; ro_ta5; ro_rw],[param.se; se_ta5; se_rw],'VariableNames',{'rho','se'},'RowNames',{'Model'; "tauchen"; "rouwenhorst"})
+tab_1c = table([param.ro; ro_ta5; ro_rw],[param.se; se_ta5; se_rw],'VariableNames',{'rho','se'},'RowNames',{'Model'; 'tauchen'; 'rouwenhorst'})
 
 % part d)
 old_var = param.se^2/(1-param.ro^2);
@@ -24,7 +24,7 @@ param.ro = 0.98;
 param.se = old_var*(1-param.ro^2);
 [param, ro_rw, se_rw] = transition(param,  "rouwenhorst");
 
-tab_1d = table([param.ro;ro_rw],[param.se;se_rw],'VariableNames',{'rho','se'},'RowNames',{'Model'; "rouwenhorst"})
+tab_1d = table([param.ro;ro_rw],[param.se;se_rw],'VariableNames',{'rho','se'},'RowNames',{'Model'; 'rouwenhorst'})
 
 %% Problem 2
 % declare parameters
