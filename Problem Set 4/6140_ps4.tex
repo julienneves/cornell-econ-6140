@@ -99,189 +99,209 @@
 
 \maketitle
 
-\section*{Open Economy with Durable Goods}
+\section*{Open Sector Growth Model via Dynamic Programming}
 
 \begin{enumerate}[(1)]
 	\item 
+	Let $\tau_t^c=\tau^c$ and $\tau_t^x=\tau^x$ be constant. The functional equation is given by	
+	\[
+	(Tv)(k)=\max_{0\leq k' \leq \frac{f(k)}{(1+\tau^x)}+ (1-\delta)k} \left\lbrace u\left( \frac{f(k)}{(1+\tau^c)}- \frac{(1+\tau^x)}{(1+\tau^c)}(k'-(1-\delta)k) \right)  +\beta v(k')\right\rbrace 
+	\]
+	\item 
+	Our state variable is the current value of $k$ and our control is the future value of capital $k'$. 
 	
-	The Langrangian of the problem:
-	\begin{align*}
-	\mathcal{L} = \sum_{t=0}^{\infty}\beta^t[u(c_t)+v(z_{t+1}) &+\lambda_t(R^*b_t+af(k_t)-c_t-x_{kt}-qx_{zt}-b_{t+1}-\frac{d}{2}(z_{t+1}-z_t)^2) \\
-	&+\mu_t(x_{zt}+(1-\delta_z)z_t-z_{t+1})\\
-	&+\nu_t(x_{kt}+(1-\delta_k)k_t-k_{t+1}) ]
-	\end{align*}
+	In our setting, this makes sense since we can't affect the current value of capital, but we can decide how much to consumes/invest to pinpoint capital in the next period.
 	
-	KKT:
-	\begin{align*}
-	c_{t}&: c_t^{-\eta}-\lambda_t=0\\
-	z_{t+1}&:z_{t+1}^{-\eta}-\lambda_td(z_{t+1}-z_t)+\beta \lambda_{t+1}d(z_{t+2}-z_{t+1})-\mu_t+ \beta \mu_{t+1} (1-\delta_z) =0\\
-	b_{t+1}&: \beta \lambda_{t+1}R^* - \lambda_t =0\\
-	k_{t+1}&:\beta \lambda_{t+1} a f'(k_{t+1}) + \beta \nu_{t+1}(1-\delta_k) -\nu_t=0 \\
-	x_{zt}&:\mu_t-q\lambda_t  =0 \\
-	x_{kt}&:\nu_t-\lambda_t  =0\\
-	&:R^*b_t+af(k_t)\geq c_t+x_{kt}+qx_{zt}+b_{t+1}+\frac{d}{2}(z_{t+1}-z_t)^2\\
-	&:x_{zt}+(1-\delta_z)z_t\geq z_{t+1}\\
-	&:x_{kt}+(1-\delta_k)k_t\geq k_{t+1}\\
-	TVC_1&:\lim_{T\to \infty}\beta^Tu_c(c_T)k_{T+1}  =0\\
-	TVC_2&:\lim_{T\to \infty}\beta^Tu_c(c_T)b_{T+1}  =0
-	\end{align*}
+	Note that we can't set our state space equal to $[0,1]$. In fact, part 4-7 shows a steady state value of capital that is not even remotely close to be inside $[0,1]$.
 	
-	Note that we need an extra tranversality condition for capital.
+	\item 
 	
+	Note that $T$ is defined on a the set of bounded function defined on $[0.\infty)$.
 	
-	Note that since $R^*=\frac{1}{\beta}$, then $\lambda_t = \lambda_{t+1}$.
-	
-	The steady state FOCs are given by
-			\begin{align*}
-	&\left( \frac{c}{z}\right) ^{\eta} = q(1-\beta(1-\delta_z))\\
-	&\beta(af'(k)+(1-\delta_k))=1
-	\end{align*}
-	and the steady state constraint yield
+	To show that $T$ is a contraction, we can use Blackwell's theorem. In fact, we only need to show monotonicity and discounting for $T$
+	\begin{enumerate}[(i)]
+		\item Monotonicity
+		
+		Let $v(x)\leq w(x)$ and $g_v(k)$, $g_w(k)$ be the respective policy function. Then,
 		\begin{align*}
-	&(R^*-1)b+af(k)= c+x_{k}+qx_{z}\\
-	&x_{z}=\delta_zz\\
-	&x_{k}= \delta_zk
-	\end{align*}
+			(Tv)(k)&=\max_{0\leq k' \leq \frac{f(k)}{(1+\tau^x)}+ (1-\delta)k} \left\lbrace u\left( \frac{f(k)}{(1+\tau^c)}- \frac{(1+\tau^x)}{(1+\tau^c)}(k'-(1-\delta)k) \right)  +\beta v(k')\right\rbrace \\
+			& =u\left( \frac{f(k)}{(1+\tau^c)}- \frac{(1+\tau^x)}{(1+\tau^c)}(g_v(k)-(1-\delta)k) \right)  +\beta v(g_v(k)) \\
+			& \leq u\left( \frac{f(k)}{(1+\tau^c)}- \frac{(1+\tau^x)}{(1+\tau^c)}(g_v(k)-(1-\delta)k) \right)  +\beta w(g_v(k)) \\
+			& \leq u\left( \frac{f(k)}{(1+\tau^c)}- \frac{(1+\tau^x)}{(1+\tau^c)}(g_f(k)-(1-\delta)k) \right)  +\beta w(g_w(k)) \\
+			&=\max_{0\leq k' \leq \frac{f(k)}{(1+\tau^x)}+ (1-\delta)k} \left\lbrace u\left( \frac{f(k)}{(1+\tau^c)}- \frac{(1+\tau^x)}{(1+\tau^c)}(k'-(1-\delta)k) \right)  +\beta w(k')\right\rbrace \\
+		\Rightarrow	(Tv)(k)& \leq (Tw)(k)
+		\end{align*}
+		\item Discounting
+			\begin{align*}
+		(Tv+a)(k)&=\max_{0\leq k' \leq \frac{f(k)}{(1+\tau^x)}+ (1-\delta)k} \left\lbrace u\left( \frac{f(k)}{(1+\tau^c)}- \frac{(1+\tau^x)}{(1+\tau^c)}(k'-(1-\delta)k) \right)  +\beta (v(k')+a)\right\rbrace \\
+		&=\max_{0\leq k' \leq \frac{f(k)}{(1+\tau^x)}+ (1-\delta)k} \left\lbrace u\left( \frac{f(k)}{(1+\tau^c)}- \frac{(1+\tau^x)}{(1+\tau^c)}(k'-(1-\delta)k) \right)  +\beta v(k')\right\rbrace +\beta a \\
+		&= (Tv)(k) +\beta a
+		\end{align*}
+	\end{enumerate}
 
-Note that if $f'(\cdot)$ is decreasing, $k$ is uniquely determined by $(\beta,a,\delta_k,f(\cdot))$.
+Hence, $T$ is a contraction.
+	\item
+	
+Figure \ref{fig:fig1} show the value function around the steady state and Figure \ref{fig:fig2} shows the policy function.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{fig1}
+		\caption{Value function}
+		\label{fig:fig1}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{fig2}
+		\caption{Policy function}
+		\label{fig:fig2}
+	\end{figure}
 
-Since $d$ doesn't enter these equations, hence it is irrelevant for the steady states.
+	\item
+	
+Figure \ref{fig:fig3} show the time path of capital starting from $k_0=0.9k^*$.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{fig3}
+		\caption{Time path for consumption and capital}
+		\label{fig:fig3}
+	\end{figure}
 
-If $q\uparrow$ or $\delta_z \uparrow$, then $\frac{c}{z} \uparrow$. Since $k$ is only determined by the coefficient, we need $b$ to adjust such that $(R^*-1)b+af(k)= c+q\delta_zz+\delta_zk$ holds for the new steady state.
+	\item
 	
-	\item 
-	
-	Recall that since $R^*=\frac{1}{\beta}$, we have $\lambda_t = \lambda_{t+1} = \lambda$. This in turns implies that 
-	$\mu_t=q\lambda$ and $\nu_t=\lambda$, i.e. every Lagrange multiplier is constant. This implies that $c_t$ and $z_{t+1}$ are also constant for $t\geq 0$. Note that $z_0$ is given, therefore $z_t=z$ for $t\geq 1$ which might not be equal to $z_0$. In fact, $z$ is equal to the steady state value of 
-	\[
-	z= c[q(1-\beta(1-\delta_z))]^{-\frac{1}{\eta}}
-	\]
-	
-	Moreover, we get
-	\[
-	\beta(af'(k_{t+1})+(1-\delta_k))=1
-	\]
-	i.e. $k_{t+1}$ is also constant if $f'(\cdot)$ is decreasing and $k$ is given by $\beta(af'(k)+(1-\delta_k))=1$.
-	
-	Since $k_{t+1}$ is constant $x_{kt}+(1-\delta_k)k_t= k_{t+1}$ becomes $x_{kt}=\delta_kk$ for $t\geq 1$ and $x_{k0}=k-(1-\delta_k)k_0$ for $t=0$.
-	Since $z_{t+1}$ is constant $x_{zt}+(1-\delta_z)z_t= z_{t+1}$ becomes $x_{zt}=\delta_zz$ for $t\geq 1$ and $x_{z0}=z-(1-\delta_z)z_0$ for $t=0$.
-	
-	Now, we look at the dynamics of $b_t$. Note that it is fully determined by
-	\[
-	b_{t+1}=R^*b_t+af(k_t)- c-x_{kt}-qx_{zt}
-	\]
-	Since we know $b_0$, the whole sequence of $x_{kt}$ and $x_{zt}$, the only thing missing is $c$. As shown previously, $c_t$ is constant. Hence, to pin down $b_t$ we need to find $c_0=c$.
-	
-	Let's look at the phase diagram of $b$ and $z$ with $t\geq 1$. Note that we get the following equation
-\begin{align*}
-	z_{t+1} = z_t = z\\
-	b_{t+1}=R^*b_t+af(k)- c-\delta_k k-q\delta_z z_t
-\end{align*}
-
-Hence, the locus for $b$ is
-\begin{align*}
-	b_{t}=-\frac{a\beta}{1-\beta}f(k)+ \frac{c\beta}{1-\beta}+ \frac{\delta_k\beta}{1-\beta}k+\frac{q\delta_z\beta}{1-\beta} z_t
-\end{align*}
-
-Hence, the steady state is $b=-\frac{a\beta}{1-\beta}f(k)+ \frac{c\beta}{1-\beta}+ \frac{\delta_k\beta}{1-\beta}k+\frac{q\delta_z\beta}{1-\beta} z$. Since $z_t$ is constant, to get to the steady state, we need $b_t=b$. Therefore, we need $c$ to be such that $b_1 = -\frac{a\beta}{1-\beta}f(k)+ \frac{c\beta}{1-\beta}+ \frac{\delta_k\beta}{1-\beta}k+\frac{q\delta_z\beta}{1-\beta} z$.
-
-Hence, we choose $c_0=c$ such that $b_{1}=R^*b_0+af(k_0)- c_0-x_{k0}-qx_{z0}$ holds and voil\`a!
-
-	\item 
-	
-	Again, every Lagrange multiplier are constant. Therefore, we get
-	\[
-	\beta(af'(k_{t+1})+(1-\delta_k))=1
-	\]
-	i.e. $k_{t+1}$ is constant if $f'(\cdot)$ is decreasing. Since $k_{t+1}$ is constant $x_{kt}+(1-\delta_k)k_t= k_{t+1}$ becomes $x_{kt}=\delta_kk$ for $t\geq 1$ and $x_{k0}=k-(1-\delta_k)k_0$ for $t=0$.
-	
-	Moreover, the FOC of $z_{t+1}$ is now
-	\[
-	z_{t+1}^{-\eta}= \lambda [d(z_{t+1}-z_t)-\beta d(z_{t+2}-z_{t+1})+q(1- \beta (1-\delta_z) )]
-	\]
-	
-	Since capital is constant, we can focus on a phase diagram to see what happens to $z_t$ only. Let $y_t= z_{t+1}-z_t$. Hence, we have the two following dynamic equations
+	We use the shooting algorithm for this question. For sake of clarity, we provide the dynamic equations:
 	\begin{align*}
-		z_{t+1} & = y_t + z_t\\
-	y_{t+1}&= \frac{1}{\beta }y_{t} + \frac{q}{\beta d}(1- \beta (1-\delta_z) ) -\frac{1}{\lambda \beta d}(y_{t}+z_{t})^{-\eta}
+		k_{t+1} &= \frac{k_t^\alpha}{(1+\tau^x_t)}+(1-\delta)k_t-c_t\frac{(1+\tau^c_t)}{(1+\tau^x_t)}\\
+		c_{t+1} &= c_t\left( \frac{(1+\tau^c_t)(1+\tau^x_{t+1})}{(1+\tau^x_t)(1+\tau^c_{t+1}))}\right)^\frac{1}{\sigma}\left( \frac{\alpha\beta k_t^{\alpha-1}}{(1+\tau^x_{t+1})}+\beta(1-\delta))\right) ^\frac{1}{\sigma}
 	\end{align*}
 	
-	Take the loci where $z$ is constant. This yields $y=0$, i.e. the $y$-axis.
 	
-	For the second loci is shape is not too important for our analysis. We simply note that for $y=0$, we get
-	\[
-		z ^{-\eta} = \lambda q(1-\beta(1-\delta_z))
-	\]
-	Since, $\lambda = c^{-\eta}$, we have $z ^{-\eta} = c^{-\eta} q(1-\beta(1-\delta_z))$, i.e. the steady state derived previously.
-	
-	To describe the dynamics, take $y_t<0$. This implies that $z_{t+1}<z_t$. Therefore on the steady path, if we start over the steady state, $z_t$ will decrease until it reaches $z$. The reverse can be said for $y_t>0$. The speed of converge is describe in part 4).
+	Figure \ref{fig:fig4} show the time path of capital for a permanent tax increase. Note that the consumption jumps at $t=1$ to get back to the steady path.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{fig4}
+		\caption{Time path for consumption and capital}
+		\label{fig:fig4}
+	\end{figure}
 
+	\item
+	
+	Again we use the shooting algorithm for this question. Figure \ref{fig:fig5} show the time path of capital for a temporary tax increase. 
+	
+	In this setting, the steady path moves both at $t=1$ and $t=10$ explaining the two jumps in consumption to insure that we will reach the steady state in the future. 
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{fig5}
+		\caption{Time path for consumption and capital}
+		\label{fig:fig5}
+	\end{figure}
+
+
+\end{enumerate}
+
+\section*{Ben-Porath}
+\begin{enumerate}[(1)]
 	\item 
 	
-	Note that as derived previously, capital goods are constant for period $t\geq 1$. Hence to converge to the steady state, we only one period.
+	\begin{enumerate}[(i)]
+		\item $\Rightarrow$
+		
+		Let $Y^*=\max_{s(t),h(t)}\int_{0}^{\infty}\exp(-rt)w(t)(1-s(t))h(t)dt$ and $\cbra{c(t),s(t),h(t)}_{t=0}^\infty$ solve the household problem.
+		
+		Let's assume that $\cbra{s(t),h(t)}$ does not maximizes $\int_{0}^{\infty}\exp(-rt)w(t)(1-s(t))h(t)dt$, i.e. $\exists Y$ such that
+		\[
+		\int_{0}^{\infty}\exp(-rt)w(t)(1-s(t))h(t)dt = Y < Y^*
+		\]
+		
+		Let $c'(t)=c(t)+\epsilon$ for some $\epsilon>0$. Clearly, $c' \succ c$ due to strictly increasing nature of $u(\cdot)$. If, we can find an $\epsilon$ such that $c'(t)$ is feasible, then we have a contradiction with $\cbra{c(t),s(t),h(t)}_{t=0}^\infty$ solving the household problem.
+		
+		\begin{align*}
+			\int_{0}^{\infty}\exp(-rt)c'(t)dt & = \int_{0}^{\infty}\exp(-rt)c(t)dt + \int_{0}^{\infty}\exp(-rt)\epsilon dt\\
+			& \leq \int_{0}^{\infty}\exp(-rt)w(t)(1-s(t))h(t)dt + \frac{\epsilon}{r}\\
+			& \leq Y + \frac{\epsilon}{r}
+		\end{align*}
+		
+		Since $Y<Y'$, there exists an $\epsilon>0$ such that $Y + \frac{\epsilon}{r}\leq Y^*$. Hence, there exists some $\cbra{s'(t),h'(t)}_{t=0}^\infty$ such that $\int_{0}^{\infty}\exp(-rt)w(t)(1-s'(t))h'(t)dt=Y^*$ which implies that $\cbra{c'(t),s'(t),h'(t)}_{t=0}^\infty$ is feasible, i.e. we have a contradiction.
+		
+		\item $\Leftarrow$
+		
+		Let $\cbra{s(t),h(t)}_{t=0}^\infty$ solve $\max_{s(t),h(t)}\int_{0}^{\infty}\exp(-rt)w(t)(1-s(t))h(t)dt = Y$.
+		
+		Let $\cbra{c(t)}_{t=0}^\infty$ solve the household problem and $\cbra{c'(t)}_{t=0}^\infty$ be any solution such that $c'\succ c$. 
+		
+		Since $\cbra{c(t)}_{t=0}^\infty$ solves the household problem with the following budget constraint,
+		\[
+		\int_{0}^{\infty}\exp(-rt)c(t)dt \leq Y
+		\]
+		we have that 
+		\[
+		\int_{0}^{\infty}\exp(-rt)c'(t)dt > Y
+		\]
+		
+		Therefore, any $\cbra{s'(t),h'(t)}_{t=0}^\infty$ that supports $\cbra{c'(t)}_{t=0}^\infty$ it must be the case that $int_{0}^{\infty}\exp(-rt)w(t)(1-s'(t))h'(t)dt>Y$ which is a contradiction. 
+		
+		Hence, $\cbra{c(t),s(t),h(t)}_{t=0}^\infty$ solves the household problem.
+		
+	\end{enumerate}
+	\item 
+	The current Hamiltonian is given by
+	\[
+	\mathcal{H}(s,h,\mu) = w(t)(1-s(t))h(t)+\mu(t)(\phi(s(t)h(t))-\delta_hh(t))
+	\]
+	where $h$ is the state variable, $s$ the control variable and $\mu$ the costate variable.
 	
-	For durable goods, our analysis implies that regardless if we start over or under the second locus, the $y_t$ will converge to the steady state $y=0$ over time. This in turns implies that the difference between $z_{t+1}$ and $z_{t}$ will decrease every period until $z_t=z$. Hence, the convergence of durable goods is not ``instantaneous'' like capital.
+	The FOCs, TVC, and constraint are given by
+	\begin{align*}
+		s&: -w(t)h(t)+\mu(t)h(t)\phi'(s(t)h(t)) = 0\\
+		h&: w(t)(1-s(t))+\mu(t)(s(t)\phi'(s(t)h(t))-\delta_h)  = r\mu(t)-\dot{\mu}(t)\\
+		TVC&: \lim_{t\to \infty} \exp(-rt)\mu(t)h(t)=0\\
+		&: \dot{h} = \phi(s(t)h(t))-\delta_hh(t)
+	\end{align*}
+	
+	
+	\item 
+	
+	First, we differentiate the first FOC
+	\[
+	{\mu}(t)\phi''(x(t))\dot{x}(t)+\phi'(x(t))\dot{\mu}(t)= \dot{w}(t) 
+	\]
+	
+	We can then combine the FOCs in the following way
+	\begin{align*}
+	-\dot{\mu}(t) &=w(t)(1-s(t))+\frac{w(t)}{\phi'(x(t))}(s(t)\phi'(x(t))-\delta_h-r)  \\
+	-\dot{\mu}(t) &= w(t)+\frac{w(t)}{\phi'(x(t))}(-\delta_h-r)  \\
+	-\phi'(x(t))\dot{\mu}(t) &=\phi'(x(t))w(t)+w(t)(-\delta_h-r) \\
+		{\mu}(t)\phi''(x(t))\dot{x}(t)-\dot{w}(t) &=\phi'(x(t))w(t)-w(t)(\delta_h+r)  \\
+		\Rightarrow  \dot{x}(t) & =\frac{1}{{\mu}(t)\phi''(x(t))} (\dot{w}(t)+w(t)(\phi'(x(t))-\delta_h-r)) 
+\end{align*}
+
+\item
+
+In steady state, $\dot{\mu}=\dot{h}=0$. Hence,
+\begin{align*}
+0 &= \phi(x^*(t))-\delta_hh^*(t)\\
+\Rightarrow h^*(t) & = \frac{\phi(x^*(t))}{\delta_h}
+\end{align*}
+and
+\begin{align*}
+	\phi'(x^*(t))  & = \delta_h+r\\
+	\Rightarrow x^*(t)  & = \phi^{'-1}(\delta_h+r)
+\end{align*}
+
+This implies that
+\begin{align*}
+	\Rightarrow h^*(t) &  = \frac{\phi(\phi^{'-1}(\delta_h+r))}{\delta_h}\\
+\Rightarrow  s^*(t) & =  \frac{x^*(t)}{ h^*(t)} = \frac{\delta_h\phi^{'-1}(\delta_h+r)}{\phi(\phi^{'-1}(\delta_h+r))}
+\end{align*}
+
+We have that $h^*$ and $s^*$ are uniquely determined by $\delta_h$, $r$ and the shape of $\phi(\cdot)$. Note that $\phi(\cdot)$ is strictly increasing while $\phi^{'-1}(\cdot)$ is strictly decreasing. 
+
+Additionally, $w(t)$ does not influence the steady state human capital accumulation and the schooling decision. This contrasts the fact that $w(t)$ does influence the path of $x(t)$, but not the steady state.
+
 \end{enumerate}
 	
 	
-	\section*{Transition paths in the one sector growth model}
-	
-	\begin{enumerate}[(1)]
-		\item 
-		
-		With the parameters defined in the problem set, we get that the steady state is $k^*=10.03 $ and $c^*=1.639$. Thus, our starting value is $k_0 = 9.027599$. Figure \ref{fig:fig1} shows the transition of $k_0$ on the steady path. It takes $53$ periods to converge to the steady state when starting from $k_0=.9k^*$.
-
-		\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{fig1}
-	\caption{Transition path for growth model starting at $k_0=.9k^*$}
-	\label{fig:fig1}
-\end{figure}
-
-Note that we also plot the loci of our phase diagram on Figure \ref{fig:fig1}. Recall that they are given by
-\begin{align*}
-	k:& c_t =Ak_t^\alpha - \delta k_t   \\
-	c:& c_t = k_t^\alpha +(1-\delta)k_t-k^*
-\end{align*}
-where $k^*$ is the steady state value equal to $\left( \frac{\alpha\beta A}{1-\beta+\beta\delta}\right)^\frac{1}{1-\alpha}$.
-
-		
-		\item 
-		See Figure \ref{fig:fig2}.
-				\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.7\linewidth]{fig2}
-			\caption{Phase diagram for growth model}
-			\label{fig:fig2}
-		\end{figure}
-		 Note that the scales on this figure are not 1-1.
-		\item 
-				\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.7\linewidth]{fig3}
-			\caption{Phase diagram for growth model with increase of 1\% in $\beta$}
-			\label{fig:fig3}
-		\end{figure}
-By increasing $\beta$ by 1\% the second locus shift to the right and we get that the new steady state is $k^*=12.640$ and $c^*=1.678$. Therefore the starting value is $k_0 = 11.376$. Note that since $k^*$ is bigger, $k_0$ is a bit farther in absolute terms. This results in a longer convergence term of $59$ periods. The transition path is plotted in Figure \ref{fig:fig3}.
-
-
-		\item 
-		
-		Note that if $A$ goes up, the first locus also goes up. This implies that the new steady path also shifts up and the new steady state will be one where $k^*\uparrow$ and $c^*\uparrow$. 
-		
-		In this problem, we let the increase in $A$ happen at $t=1$. Moreover, let's assume that it was an unexpected increase permanent increase in $A$, i.e. consumer don't preventively adjust to a future steady path.
-						\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.7\linewidth]{fig4}
-			\caption{Time path for consumption and capital with increase of 1\% in $A$}
-			\label{fig:fig4}
-		\end{figure}
-		
-		Now, since the point $(k_0,c_0)$ is the old steady , it might not be on the new steady path. To adjust to that the consumer will instantaneously change it consumption at time $t=1$ to get on the new steady path unlike $k_0$ that can't act reactively. From there on on out, both $k_t$ and $c_t$ will monotonically increase until it reaches the new steady path as shown in Figure \ref{fig:fig4}. 
-	\end{enumerate}
-
 \section*{Code}
 
-\lstinputlisting[language=Matlab]{shooting.m}
+\lstinputlisting[language=Matlab]{"neves_econ_6140_ps4.m"}
 
 \end{document}

@@ -1,0 +1,418 @@
+% Class Notes Template
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage[utf8]{inputenc}
+
+% Packages
+\usepackage[french, english]{babel}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, amsopn,mathrsfs, epstopdf, graphicx,color, tikz, float, enumerate}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstset{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{blue}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+% Title
+\title{ECON 6140 - Problem Set \# 2}
+\date{\today}
+\author{Julien Manuel Neves}
+
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{set-up}[theorem]{Set-up}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}[theorem]{Axiom}
+
+% Usefuls Macros
+\newcommand{\field}[1]{\mathbb{#1}}
+\newcommand{\N}{\field{N}} % natural numbers
+\newcommand{\R}{\field{R}} % real numbers
+\newcommand{\Z}{\field{Z}} % integers
+\newcommand\F{\mathcal{F}}
+\newcommand\B{\mathbb{B}}
+\renewcommand{\Re}{\R} % reals
+\newcommand{\Rn}[1]{\mathbb{R}^{#1}}
+\newcommand{\1}{{\bf 1}} % vector of all 1's
+\newcommand{\I}[1]{\mathbb{I}_{\left\{#1\right\}}} % indicator function
+\newcommand{\La}{\mathscr{L}}
+% \newcommand{\tends}{{\rightarrow}} % arrow for limits
+% \newcommand{\ra}{{\rightarrow}} % abbreviation for right arrow
+% \newcommand{\subjectto}{\mbox{\rm subject to}} % subject to
+
+%% math operators
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator*{\minimize}{minimize}
+\DeclareMathOperator{\E}{\mathsf{E}} % expectation
+\newcommand{\Ex}[1]{\E\left\{#1\right\}} % expectation with brackets
+\DeclareMathOperator{\pr}{\mathsf{P}} % probability
+\newcommand{\prob}[1]{\pr\left\{#1\right\}}
+\DeclareMathOperator{\subjectto}{{s.t.\ }} % subject to
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\card}[1]{\left|#1\right|}
+
+% Extra stuff
+\newcommand\seq[1]{\{ #1 \}}
+\newcommand{\inp}[2]{\langle #1, #2 \rangle}
+
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\pa}[1]{\left(#1\right)}
+\newcommand{\bra}[1]{\left[#1\right]}
+\newcommand{\cbra}[1]{\left\{ #1 \right\}}
+
+\newcommand{\pfrac}[2]{\pa{\frac{#1}{#2}}}
+\newcommand{\bfrac}[2]{\bra{\frac{#1}{#2}}}
+
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\pmat}[1]{\pa{\mat{#1}}}
+\newcommand{\bmat}[1]{\bra{\mat{#1}}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\begin{enumerate}[(1)]
+	\item
+	
+	Figure 1 shows the possible endowment paths.
+	\begin{figure}[H]
+		\centering
+	\begin{tikzpicture}[level/.style={sibling distance=60mm/#1}]
+	\node  [circle,draw]  (z){}
+	child {node [circle,draw] (a) {$2$}
+		child {node [circle,draw] (b) {$2$}
+			child {node {$\vdots$} 
+			} edge from parent[] node[left] {$\pi$}
+		}
+		child {node [circle,draw] (g) {$1$}
+			child {node {$\vdots$}
+			} edge from parent[] node[right] {$1-\pi$}
+		} edge from parent[] node[left] {$\pi$}
+	}
+	child {node [circle,draw] (j) {$1$}
+		child {node [circle,draw] (k) {$2$}
+			child {node {$\vdots$} } edge from parent[] node[left] {$\pi$}
+		} 
+		child {node [circle,draw] (l) {$1$}
+			child {node (c){$\vdots$}
+				child {node (p) {} edge from parent[draw=none]
+					child [grow=right] {node (q) {} edge from parent[draw=none]
+						child [grow=right] {node (q) {} edge from parent[draw=none]
+							child [grow=up] {node (r) {$\vdots$} edge from parent[draw=none]
+								child [grow=up] {node (s) {$y_1$} edge from parent[draw=none]
+									child [grow=up] {node (t) {$y_0$} edge from parent[draw=none]
+										child [grow=up] {node (u) {} edge from parent[draw=none]}
+									}
+								}
+							}
+						}
+					}
+				}
+			} edge from parent[] node[right] {$1-\pi$}
+		} edge from parent[] node[right] {$1-\pi$}
+	} ;
+	\end{tikzpicture}
+	
+	\caption{Possible Endowment Paths}
+		\end{figure}
+
+	\item
+	
+	For $t\geq 1$, the Bellman equation is given by
+	\begin{align*}
+		V(a,y) & =\max_{c,a'}\ln(c) +\beta V(a',y')\\
+		&\subjectto a' =(1+r)(a-c)+y'\\
+		& \qquad a\geq c
+	\end{align*}
+	
+	Note that for $t\geq 1$, $y'=y$ and therefore $c =\frac{y-a'}{1+r} +a$, thus
+		\begin{align*}
+	V(a,y)  =\max_{a'\geq y}\ln\left( \frac{y-a'}{1+r} +a\right)  +\beta V(a',y)
+	\end{align*}
+	
+	Hence, the Euler equation for this problem is given by
+	\[
+	\frac{1}{c}\geq \beta (1+r)\frac{1}{c'}
+	\]
+	where it holds with equality if $a'\geq y$ ($a\geq c$) is not binding.
+	
+	Since $\beta(1+r)=1$, we get that Euler yields
+	\[
+	c'\geq c
+	\]
+	
+	Let $c'=c=c^*$. If we can show that $a\geq c$ is not binding, then we are right to assume that $c'=c=c^*$. Looking at the budget constraint and imposing the no Ponzi scheme condition, we get that for $t\geq 1$,
+	\begin{align*}
+	a_t & = \sum_{j=0}^{\infty}\left( \frac{1}{1+r}\right)^j\left( c_{t+j} -\frac{y_{t+1+j}}{1+r} \right)  \\
+	& = \sum_{j=0}^{\infty}\left( \frac{1}{1+r}\right)^j\left( c^* -\frac{y_{1}}{1+r} \right)  \\
+	a_t & = \frac{1+r}{r} c^* -\frac{1}{r}y_1
+	\end{align*}
+	
+	Hence, the assets holdings are constant. From the budget constraint, we have 
+	\[
+	a_t= a_1=(1+r)(a_0-c_0)+y_1=(1+r)(y_0-c_0)+y_1
+	\]
+	and therefore
+		\begin{align*}
+	a_1 & = \frac{1+r}{r} c^* -\frac{1}{r}y_1\\
+	c^* & = \frac{1}{1+r}y_1 + \frac{r}{1+r}a_1\\
+	& = \frac{1}{1+r}y_1 + \frac{r}{1+r}((1+r)(y_0-c_0)+y_1)\\
+	\Rightarrow 	c^* & = y_1 + r(y_0-c_0)<a_t
+	\end{align*}
+	i.e.  $a\geq c$ is not binding.
+	
+	We can plug our results back into our Bellman equation to get the following value function
+		\begin{align*}
+V(a,y)  &=\ln\left( y_1 + r(y_0-c_0)\right)  +\beta V(a,y)\\
+V(a,y) &= \frac{1}{1-\beta}\ln\left( y_1 + r(y_0-c_0)\right) \\
+\Rightarrow V(a,y) &= \frac{1+r}{r}\ln\left( y_1 + r(y_0-c_0)\right)
+\end{align*}
+
+Thus, the problem at $t=0$ is the following
+		\begin{align*}
+w(y_0) &=\max_{c_0\geq y_0}\ln\left( c_0\right)  +\beta \Ex{\left( \frac{1+r}{r}\right) \ln\left( y_1 + r(y_0-c_0)\right)}\\
+&=\max_{c_0\geq y_0}\ln\left( c_0\right)  + \frac{1}{r}\left[  \pi \ln\left( 2 + r(y_0-c_0)\right) +(1-\pi) \ln\left( 1 + r(y_0-c_0)\right)\right] \\
+\end{align*}
+
+Then, the FOCs yield
+\[
+\frac{1}{c_0}\geq \frac{\pi}{2 + r(y_0-c_0)} + \frac{1-\pi}{1 + r(y_0-c_0)}
+\]
+where it holds with equality if $y_0=c_0$
+
+Now, let $y_0=2$. Can $y_0=c_0$? If $y_0=c_0=2$, then $\frac{1}{c_0}\geq \frac{\pi}{2 + r(y_0-c_0)} + \frac{1-\pi}{1 + r(y_0-c_0)}$ holds with inequality and
+\[
+\frac{1}{2}> \frac{\pi}{2} + \frac{1-\pi}{1} = \frac{2-\pi}{2} \geq \frac{1}{2}
+\]
+i.e. contradiction. Thus, we know that $a_0=y_0$ and we can solve for $c_0$ with
+\[
+\frac{1}{c_0}= \frac{\pi}{2 + r(y_0-c_0)} + \frac{1-\pi}{1 + r(y_0-c_0)}
+\]
+
+Finally, for $t\geq 1$, $a_t = (1+r)(a_0-c_0)+y_1=(1+r)(y_0-c_0)+y_1$ and $c_t = r(a_0-c_0)+y_1=r(y_0-c_0)+y_1$. 
+	\item
+	
+	Let $y_0=1$. Can $y_0>c_0$? If $y_0>c_0$, then $\frac{1}{c_0}\geq \frac{\pi}{2 + r(y_0-c_0)} + \frac{1-\pi}{1 + r(y_0-c_0)}$ holds with equality and
+	\[
+	1<\frac{1}{c_0}= \frac{\pi}{2 + r(1-c_0)} + \frac{1-\pi}{1 + r(1-c_0)}< \frac{2-\pi}{2} \leq  1
+	\]
+	which is a contradiction.
+	
+	Hence, the constraint binds and $y_0=c_0=1$. In turn, we have for $t\geq 1$, $c_t=y_1$. 
+	\item
+	
+	For $y_0=2$, we have
+	\[
+	u'(c^*) = \left\lbrace \mat{\frac{1}{r(2-c_0)+2} & \text{ with prob. }\pi\\
+	\frac{1}{r(2-c_0)+1} & \text{ with prob. }(1-\pi)} \right. 
+	\]
+	
+	For $y_0=1$, we have
+	\[
+	u'(c^*) = \left\lbrace \mat{\frac{1}{2} & \text{ with prob. }\pi\\
+		1 & \text{ with prob. }(1-\pi)} \right. 
+	\]
+	\item
+	
+	In LS, we have the following proposition from Chamberlain and Wilson
+	\begin{proposition}
+		If there is an $\epsilon>0$ such that for any $\alpha\in \R_+$\[
+		P(\alpha\leq y_t\leq \alpha +\epsilon\mid I_t)<1-\epsilon
+		\]
+		for all $I_t$ and $t\geq 0$, then $P(\lim_{t\to \infty}c_t =\infty) =1$.
+	\end{proposition}
+
+Let $\alpha = y_1$. Note that for any $t\geq 1$ and $\epsilon>0$, we have 
+\[
+P(\alpha\leq y_t\leq \alpha +\epsilon\mid I_t) = 1 \not< 1-\epsilon
+\]
+
+Hence, the conditions are not satisfied.
+\end{enumerate}
+\section*{Problem 2}
+\begin{enumerate}[(1)]
+	\item
+	
+	Let $y_t=y_1$ and $a_t=-\phi$. Then,
+	\begin{align*}
+		c_t+a_{t+1} & = (1+r)a_t+y_t\\
+		c_t& = -(1+r)\frac{y_1}{r}+y_1 - a_{t+1}\\
+		c_t& = -\phi - a_{t+1}\leq 0
+	\end{align*}
+	
+	Hence, to prevent a situation where $a_{t+1}\geq -\phi$, we need $c_t>0$. Having the following Inada condition, $\lim_{c\to 0} u'(c)=\infty$, prevents the borrowing constraint when $y_t=y_1$.
+	
+	Now, let $y_{t-1}=y_i\in Y$. If there's a chance that in the next period we go from $i\to 1$, i.e. $y_t=y_1$, then the borrowing constraint can't hold with equality due to the previous argument. Thus, we require $\pi_{i1}>0$, i.e. a positive probability that from any $i$ we can go to $1$ in the next period.
+	\item
+	
+	First, we carry over the previous conditions on $u$ and $\pi$ to this new problem.
+	
+	By iterating, the budget constraint and imposing a no Ponzi-scheme conditions, we get
+		\begin{align*}
+	a_t & = \sum_{j=0}^{\infty}\left( \frac{1}{1+r}\right)^j\left( c_{t+j} -y_{t+j} \right)  \\
+	\Rightarrow a_t & = \sum_{j=0}^{\infty}\left( \frac{1}{1+r}\right)^j\left( \E_t\cbra{c_{t+j}} -\E_t\cbra{y_{t+j}} \right) 
+	\end{align*}
+	
+	Similarly, we have
+	\[
+	a_{t+1}  = \sum_{j=0}^{\infty}\left( \frac{1}{1+r}\right)^j\left( \E_t\cbra{c_{t+1+j}} -\E_t\cbra{y_{t+1+j}} \right) 
+	\]
+	
+	Hence, given $a_0>0$, if we can show $a_{t+1}\geq a_t \geq \dots \geq a_0>0$. 
+	
+	With no borrowing constraint, we have that the Euler equation holds with equality, i.e.
+	\[
+	u'(c_t) = \beta (1+r) \E_t\cbra{u'(c_{t+1})}
+	\]
+	
+	First, we impose that $\beta(1+r)\geq 1$, hence
+		\[
+	u'(c_t) \geq  \E_t\cbra{u'(c_{t+1})}
+	\]
+	
+	Next, we impose that $u$ is convex so that we can apply Jensen's inequality and get
+			\[
+	u'(c_t) \geq u'( \E_t\cbra{c_{t+1}})
+	\]
+	
+	Finally, imposing that $u'$ is decreasing, we have 
+				\[
+	E_t\cbra{c_{t+1}} \geq c_t
+	\]
+	
+	This in turns, implies that $c_t$ is sub-martingale and therefore
+	\[
+	\E_t\cbra{c_{t+1+j}} = \E_t\cbra{\E_{t+j}\cbra{c_{t+1+j}}} \geq \E_t\cbra{c_{t+j}}
+	\]
+	
+	If have conditions on $\pi$ such that $y_t$ is a super martingale, we would get the following 
+		\[
+	\E_t\cbra{y_{t+1+j}} = \E_t\cbra{\E_{t+j}\cbra{y_{t+1+j}}} \leq \E_t\cbra{y_{t+j}}
+	\]
+	and
+	\begin{align*}
+	\E_t\cbra{c_{t+1+j}}-\E_t\cbra{y_{t+1+j}} &\geq \E_t\cbra{c_{t+j}}-\E_t\cbra{y_{t+j}}\\
+		 \left( \frac{1}{1+r}\right)^j\left( \E_t\cbra{c_{t+1+j}}-\E_t\cbra{y_{t+1+j}}\right)  &\geq   \left( \frac{1}{1+r}\right)^j\left( \E_t\cbra{c_{t+j}}-\E_t\cbra{y_{t+j}} \right) \\
+	 \sum_{j=0}^{\infty}\left( \frac{1}{1+r}\right)^j\left( \E_t\cbra{c_{t+1+j}}-\E_t\cbra{y_{t+1+j}}\right)  &\geq   \sum_{j=0}^{\infty}\left( \frac{1}{1+r}\right)^j\left( \E_t\cbra{c_{t+j}}-\E_t\cbra{y_{t+j}} \right) \\
+	 a_{t+1} &\geq a_t
+	\end{align*}
+	i.e. the desired result.
+	
+\end{enumerate}
+\section*{Problem 3}
+\begin{enumerate}[(1)]
+	\item
+	
+	First, note that
+	\begin{align*}
+	\ln{c_{t+1}} &\sim N(\mu_t,\nu_t)\\
+	\Rightarrow -\gamma\ln{c_{t+1}} &\sim N(-\gamma\mu_t,\gamma^2\nu_t)
+	\end{align*}
+	
+	This, implies that $\E_t \cbra{c_{t+1}^{-\gamma}}=e^{-\gamma u_t + \frac{1}{2}\gamma^2\nu_t}$.
+	
+	Then, the Euler equation turns out to be
+	\begin{align*}
+	u'(c_t) & =\beta R \E_t \cbra{u'(c_{t+1})}\\
+	c_t^{-\gamma}& =\beta R \E_t \cbra{c_{t+1}^{-\gamma}}\\
+	c_t^{-\gamma}& =\beta R \E_t \cbra{e^{-\gamma\ln{c_{t+1}}}}\\
+	c_t^{-\gamma}& = \beta Re^{-\gamma \mu_t + \frac{1}{2}\gamma^2\nu_t}\\
+	-\gamma\ln{c_t}& =\ln {\beta R }-\gamma \mu_t + \frac{1}{2}\gamma^2\nu_t\\
+	-\gamma\ln{c_t}& =\ln {\beta R }-\gamma \E_t\cbra{\ln{c_{t+1}}} + \frac{1}{2}\gamma^2\nu_t\\
+	\gamma\E_t\cbra{\ln{c_{t+1}}-\ln{c_t}}& = \ln {\beta R } + \frac{1}{2}\gamma^2\nu_t\\
+	\Rightarrow \E_t\cbra{\Delta \ln{c_{t+1}}} &= \frac{1}{\gamma}\ln {\beta R } + \frac{1}{2}\gamma\nu_t
+	\end{align*}
+	
+	\item
+	
+	Note that if we increase volatility, then $\E_t\cbra{\Delta \ln{c_{t+1}}} \uparrow$. This means that the expected consumption grows, implying that current saving must increase, i.e. precautionary saving behavior.
+	
+	\item
+	First, we look at the regression
+			\begin{align*}
+	\Rightarrow \Ex{\E_t\cbra{\Delta \ln{c_{t+1}}}\mid y_t} &=  \Ex{\E_t\cbra{ \alpha_0+\alpha_1 y_t + \epsilon_{t+1}}\mid y_t} \\
+	&=  \alpha_0+\alpha_1 y_t +\Ex{ \epsilon_{t+1}\mid y_t}
+	\end{align*}
+	Note that for the estimate of the previous regression to be consistent, we need $\Ex{\epsilon_{t+1}\mid y_t}=0$. 
+	
+	Looking at the previous model, where PIH holds, we have
+		\begin{align*}
+	\Rightarrow \Ex{\E_t\cbra{\Delta \ln{c_{t+1}}}\mid y_t} &=  \Ex{\frac{1}{\gamma}\ln {\beta R } + \frac{1}{2}\gamma\nu_t\mid y_t} \\
+	\E_t\cbra{\Delta \ln{c_{t+1}}} &=\underbrace{ \frac{1}{\gamma}\ln {\beta R }}_{\alpha_0} +\underbrace{ 0}_{\alpha_1y_t} + \underbrace{\frac{1}{2}\gamma \Ex{\nu_t\mid y_t}}_{\Ex{\epsilon_{t+1}\mid y_t}}
+	\end{align*}
+	
+Thus, if we have $\Ex{\nu_t\mid y_t}\neq 0$, the implied regression $\Delta \ln{c_{t+1}} = \alpha_0+\alpha_1 y_t + \epsilon_{t+1}$ has $\Ex{\epsilon_{t+1}\mid y_t}=0$. Hence, it would be possible to have $\alpha_1$ statistically different from 0, while the PIH still holds.
+	
+\end{enumerate}
+\section*{Problem 4}
+
+First, we start with the budget constraint,
+\begin{align*}
+	c_t+a_{t+1} &= Ra_t+y_t\\
+	\Rightarrow a_{t+1} &= Ra_t+y_t-B(Ra_t+y_t)-D\\
+	&= (1-B)(Ra_t+y_t)-D
+\end{align*}
+
+Ignoring borrowing limits and the fact that income is i.i.d., the Euler equation reduce to the following:
+\begin{align*}
+	u'(c_t) & =\beta R \E_t \cbra{u'(c_{t+1})}\\
+	e^{-\sigma c_t} & =\beta R \E_t \cbra{e^{-\sigma c_{t+1}}}\\
+	e^{-\sigma (B(Ra_t+y_t)+D)} & =\beta R \E_t \cbra{e^{-\sigma (B(Ra_{t+1}+y_{t+1})+D)}}\\
+	e^{-\sigma (B(Ra_t+y_t)+D)} & =\beta R \E_t \cbra{e^{-\sigma (B(R ((1-B)(Ra_t+y_t)-D)+y_{t+1})+D) }}\\
+	e^{-\sigma (B(Ra_t+y_t)+D)} & =\beta R \E_t \cbra{e^{-\sigma B y_{t+1}}} e^{-\sigma (B(R ((1-B)(Ra_t+y_t)-D))+D) }\\
+	e^{-\sigma (B(Ra_t+y_t)+D)} & =\beta R \Ex{e^{-\sigma B y_{t+1}}} e^{-\sigma (BR (1-B)(Ra_t+y_t)+(1-RB)D) }\\
+	e^{-\sigma B((1-R(1-B))(Ra_t+y_t)+RD)} & =\beta R \Ex{e^{-\sigma B y_{t+1}}}
+\end{align*}
+
+Hence, since the right side is a constant, we need 
+\[
+(1-R(1-B))=0 \Leftrightarrow B = 1-\frac{1}{R}
+\]
+
+Hence,
+\begin{align*}
+e^{-\sigma B((1-R(1-B))(Ra_t+y_t)+RD)} & =\beta R \Ex{e^{-\sigma B y_{t+1}}}\\
+e^{-\sigma (R-1)D} & =\beta R \Ex{e^{-\sigma \left( \frac{R-1}{R}\right) y_{t+1}}}\\
+-\sigma (R-1)D& = \ln{\beta R}+\ln{\Ex{e^{-\sigma \left( \frac{R-1}{R}\right) y_{t+1}}}}\\
+\Rightarrow D& = -\frac{1}{\sigma (R-1)} \left[ \ln{\beta R}+\ln{\Ex{e^{-\sigma \left( \frac{R-1}{R}\right)  y_{t+1}}}}\right]
+\end{align*}
+
+Thus, since $R$ is constant, we have that $B$ and $D$ are constant and identical across agents. Recall that 
+\[
+a_{t+1} = (1-B)(Ra_t+y_t)-D
+\]
+
+How does $a_{t+1}$ change if we have mean preserving spread? Then $\Ex{e^{-\sigma \left( \frac{R-1}{R}\right)  y_{t+1}}}$ will increase and therefore $D\downarrow$ and finally $a_{t+1} \uparrow$. Since $D$ is the same for everyone, the change in $a_{t+1}$ will be identical across the distribution of $a_t$ and $y_t$.
+
+
+
+\end{document}
