@@ -29,7 +29,7 @@ for it=1:101
     c=funfitxy(fspace,s,x);
     
     fprintf('%4i %6.2e\n',[it,norm(c-cnew)]);
-    if norm(c-cnew)<1e-7, break, end
+    if norm(c-cnew)<1e-5, break, end
 end
 toc
 end

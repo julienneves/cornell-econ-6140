@@ -30,7 +30,7 @@ tab_1d = table([param.ro;ro_rw],[param.se;se_rw],'VariableNames',{'rho','se'},'R
 % declare parameters
 param.beta=0.95;
 param.r=0.02;
-param.ro=0.90;
+param.ro=0.9;
 param.se=sqrt(0.06);
 param.gamma=2;
 param.amin = 0;
@@ -51,7 +51,7 @@ sfine=gridmake(nodeunif(param.n*4,smin(1),smax(1)),0); %ygrid(floor(k/2)+2));
 xfine=funeval(c,fspace,sfine);
 plot(sfine(:,1),xfine)
 xlabel({'$a$'},'Interpreter','latex')
-ylabel({'$x(a,\bar{y})$'},'Interpreter','latex')
+ylabel({'$c(a,\bar{y})$'},'Interpreter','latex')
 title({'Consumption policy function, $y=\bar{y}$'},'Interpreter','latex')
 set(gca,'FontSize',8);
 
@@ -60,7 +60,7 @@ sfine=gridmake(0,nodeunif(param.k*4,smin(2),smax(2)));
 xfine=funeval(c,fspace,sfine);
 plot(exp(sfine(:,2)),xfine)
 xlabel('$y$','Interpreter','latex')
-ylabel('$x(0,y)$','Interpreter','latex')
+ylabel('$c(0,y)$','Interpreter','latex')
 title({'Consumption policy function, $a=0$'},'Interpreter','latex')
 set(gca,'FontSize',8);
 print -depsc fig1.eps
@@ -119,7 +119,7 @@ end
 xlabel('$e^y$','Interpreter','latex')
 ylabel('$a^{\prime}(0,y)/y$','Interpreter','latex')
 title({'Savings rate, $a=0$'},'Interpreter','latex')
-legend('Gamma = 1','Gamma = 2','Gamma = 5')
+legend('\sigma_e^2 = 0.01','\sigma_e^2 = 0.06','\sigma_e^2 = 0.12')
 set(gca,'FontSize',8);
 hold off
 print -depsc fig3.eps
@@ -163,7 +163,7 @@ tab_2d = table(avg_c',phi','VariableNames',{'mean_c','phi'},'RowNames',{'No borr
 % declare parameters
 param.beta=0.95;
 param.r=0.02;
-param.ro=0.9;
+param.ro=0;
 param.se=sqrt(0.06);
 param.gamma=2;
 param.amin = 0;
@@ -176,11 +176,10 @@ wbar = -param.se^2/2;
 fprintf('E(y)=%f \n',exp(x)'*w)
 
 % part c)
+% param.ws = w';
+% param.ygrid = x;
 [param] = transition(param,  "rouwenhorst");
 [param,c,fspace,s,smin,smax] = policy_ca(param);
-
-sfine=gridmake(nodeunif(param.n(1)*2,smin(1),smax(1)),param.ygrid);
-xfine=funeval(c,fspace,sfine);
 
 figure(4)
 subplot(2,1,1)
@@ -198,7 +197,7 @@ xfine=funeval(c,fspace,sfine);
 plot(exp(sfine(:,2)),xfine)
 xlabel('$y$','Interpreter','latex')
 ylabel('$c(y^{min},y)$','Interpreter','latex')
-title({'Consumption policy function, $a=0$'},'Interpreter','latex')
+title({'Consumption policy function, $x=y^{min}$'},'Interpreter','latex')
 set(gca,'FontSize',8);
 print -depsc fig4.eps
 
@@ -213,11 +212,11 @@ title({'Savings policy function, $y=\bar{y}$'},'Interpreter','latex')
 set(gca,'FontSize',8);
 
 subplot(2,1,2)
-sfine=gridmake(0,nodeunif(param.k*4,smin(2),smax(2)));
+sfine=gridmake(smin(1),nodeunif(param.k*4,smin(2),smax(2)));
 xfine=funeval(c,fspace,sfine);
 plot(exp(sfine(:,2)),(1+param.r)*sfine(:,1)+exp(sfine(:,2))-xfine)
 xlabel('$y$','Interpreter','latex')
-ylabel('$x^{\prime}(0,\bar{y})$','Interpreter','latex')
-title({'Savings policy function, $a=0$'},'Interpreter','latex')
+ylabel('$x^{\prime}(y^{min},\bar{y})$','Interpreter','latex')
+title({'Savings policy function, $x=y^{min}$'},'Interpreter','latex')
 set(gca,'FontSize',8);
 print -depsc fig5.eps

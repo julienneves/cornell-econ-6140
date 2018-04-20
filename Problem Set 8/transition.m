@@ -14,14 +14,13 @@ end
 
 param.yPP=w;
 param.ygrid=e';
-param.ygrid = param.ygrid - wbar;
 
 [~,D,V]=eig(w);
 ws = V(:,1);
 ws = ws/sum(ws);
 
 param.ws = ws;
-param.ygrid = param.ygrid - wbar;
+param.ygrid = param.ygrid + wbar/(1-param.ro);
 
 ro_tilde = e*(w*e')/(e*e');
 se_tilde = sqrt(e.^2*ws*(1-ro_tilde^2));
