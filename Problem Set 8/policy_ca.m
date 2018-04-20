@@ -19,10 +19,10 @@ fspace=fundef({'spli', nodeunif(n(1),(.01).^scale,(xmax-xmin+.01).^scale).^(1/sc
 grid=funnode(fspace);
 s=gridmake(grid); %collection of  states (all a with y1... all a with y2... and so on)
 
-c=funfitxy(fspace,s,param.r/(1+param.r)*s(:,1));                %guess that keep constant assets
+c=funfitxy(fspace,s,s/2);                %guess that keep constant assets
 
 tic
-for it=1:301
+for it=1:101
     cnew=c;
     x = solve_ca(param,c,fspace,s);
     c=funfitxy(fspace,s,x);

@@ -114,7 +114,7 @@ for i = 1:3
     
     sfine=gridmake(0,nodeunif(param.k*4,smin(2),smax(2)));
     xfine=funeval(c,fspace,sfine);
-    plot(exp(sfine(:,2)),1-xfine./exp(sfine(:,2)))
+    plot(exp(sfine(4:end,2)),1-xfine(4:end)./exp(sfine(4:end,2)))
 end
 xlabel('$y$','Interpreter','latex')
 ylabel('$a^{\prime}(0,y)/y$','Interpreter','latex')
@@ -182,6 +182,7 @@ param.ygrid = x;
 [param,c,fspace,s,smin,smax] = policy_ca(param);
 
 figure(5)
+hold on
 sfine=gridmake(nodeunif(param.k*4,smin(1),smax(1)));
 xfine=funeval(c,fspace,sfine);
 plot(sfine,xfine)
@@ -189,4 +190,7 @@ xlabel('$x$','Interpreter','latex')
 ylabel('$c(x)$','Interpreter','latex')
 title({'Consumption policy function'},'Interpreter','latex')
 set(gca,'FontSize',8);
+plot([0:5],[0:5],':')
+legend('c(x)','45 degrees')
+hold off
 print -depsc fig4.eps

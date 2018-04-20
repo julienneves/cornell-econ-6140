@@ -4,7 +4,7 @@ fval=x.^(-param.gamma);
 as=size(s,1)/length(param.ygrid);
     
 for i=1:length(param.ygrid)    
-    cprime=funeval(c,fspace,(1+param.r)*(s-x)+param.ygrid(i));
+    cprime=funeval(c,fspace,(1+param.r)*(s-x)+exp(param.ygrid(i)));
 %     for j=1:length(param.ygrid)
 %         ypp(1+(j-1)*as:j*as,1)=param.yPP(j,i);
 %     end

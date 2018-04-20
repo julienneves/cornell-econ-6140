@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.28)  19 APR 2018 20:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.28)  20 APR 2018 00:08
 entering extended mode
 **./6140_ps3.tex
 (6140_ps3.tex
@@ -870,10 +870,30 @@ File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
 
+(C:\Users\Server\AppData\Roaming\MiKTeX\2.9\tex\latex\booktabs\booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen175
+\lightrulewidth=\dimen176
+\cmidrulewidth=\dimen177
+\belowrulesep=\dimen178
+\belowbottomsep=\dimen179
+\aboverulesep=\dimen180
+\abovetopsep=\dimen181
+\cmidrulesep=\dimen182
+\cmidrulekern=\dimen183
+\defaultaddspace=\dimen184
+\@cmidla=\count139
+\@cmidlb=\count140
+\@aboverulesep=\dimen185
+\@belowrulesep=\dimen186
+\@thisruleclass=\count141
+\@lastruleclass=\count142
+\@thisrulewidth=\dimen187
+)
 (C:\Users\Server\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-\c@theorem=\count139
+\c@theorem=\count143
 
 (6140_ps3.aux)
 \openout1 = `6140_ps3.aux'.
@@ -935,16 +955,16 @@ Package french.ldf Warning: OT1 encoding should not be used for French.
 
 (C:\Users\Server\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count140
-\scratchdimen=\dimen175
+\scratchcounter=\count144
+\scratchdimen=\dimen188
 \scratchbox=\box43
-\nofMPsegments=\count141
-\nofMParguments=\count142
+\nofMPsegments=\count145
+\nofMParguments=\count146
 \everyMPshowfont=\toks49
-\MPscratchCnt=\count143
-\MPscratchDim=\dimen176
-\MPnumerator=\count144
-\makeMPintoPDFobject=\count145
+\MPscratchCnt=\count147
+\MPscratchDim=\dimen189
+\MPnumerator=\count148
+\makeMPintoPDFobject=\count149
 \everyMPtoPDFconversion=\toks50
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -995,7 +1015,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 ABD: EveryShipout initializing macros
-\c@lstlisting=\count146
+\c@lstlisting=\count150
 LaTeX Font Info:    Try loading font information for U+msa on input line 100.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
@@ -1005,107 +1025,91 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 100.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+) [1
+
+{C:/Users/Server/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 Package epstopdf Info: Source file: <fig1.eps>
-(epstopdf)                    date: 2018-04-19 20:11:56
+(epstopdf)                    date: 2018-04-19 22:38:35
 (epstopdf)                    size: 88228 bytes
 (epstopdf)             Output file: <fig1-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-04-19 20:15:26
+(epstopdf)                    date: 2018-04-19 22:39:41
 (epstopdf)                    size: 36311 bytes
 (epstopdf)             Command: <epstopdf --outfile=fig1-eps-converted-to.pdf f
 ig1.eps>
-(epstopdf)             \includegraphics on input line 106.
+(epstopdf)             \includegraphics on input line 178.
 Package epstopdf Info: Output file is already uptodate.
-<fig1-eps-converted-to.pdf, id=4, pagebox=cropbox, 356.33125pt x 291.0875pt>
+<fig1-eps-converted-to.pdf, id=19, pagebox=cropbox, 356.33125pt x 291.0875pt>
 File: fig1-eps-converted-to.pdf Graphic file (type pdf)
 <use fig1-eps-converted-to.pdf>
-Package pdftex.def Info: fig1-eps-converted-to.pdf  used on input line 106. on 
-input line 106.
+Package pdftex.def Info: fig1-eps-converted-to.pdf  used on input line 178. on 
+input line 178.
 Package pdftex.def Info: Requested size: 328.82707pt x 268.62988pt on input lin
-e 106.
+e 178.
+ [2]
 Package epstopdf Info: Source file: <fig2.eps>
-(epstopdf)                    date: 2018-04-19 20:11:58
-(epstopdf)                    size: 85309 bytes
+(epstopdf)                    date: 2018-04-19 22:38:37
+(epstopdf)                    size: 84410 bytes
 (epstopdf)             Output file: <fig2-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-04-19 20:15:27
-(epstopdf)                    size: 35195 bytes
+(epstopdf)                    date: 2018-04-19 22:39:42
+(epstopdf)                    size: 34571 bytes
 (epstopdf)             Command: <epstopdf --outfile=fig2-eps-converted-to.pdf f
 ig2.eps>
-(epstopdf)             \includegraphics on input line 112.
+(epstopdf)             \includegraphics on input line 186.
 Package epstopdf Info: Output file is already uptodate.
-<fig2-eps-converted-to.pdf, id=5, pagebox=cropbox, 356.33125pt x 290.08376pt>
+<fig2-eps-converted-to.pdf, id=24, pagebox=cropbox, 356.33125pt x 291.0875pt>
 File: fig2-eps-converted-to.pdf Graphic file (type pdf)
 <use fig2-eps-converted-to.pdf>
-Package pdftex.def Info: fig2-eps-converted-to.pdf  used on input line 112. on 
-input line 112.
-Package pdftex.def Info: Requested size: 328.82707pt x 267.70358pt on input lin
-e 112.
- [1
-
-{C:/Users/Server/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./fig1-eps
--converted-to.pdf>]
+Package pdftex.def Info: fig2-eps-converted-to.pdf  used on input line 186. on 
+input line 186.
+Package pdftex.def Info: Requested size: 328.82707pt x 268.62988pt on input lin
+e 186.
+ [3 <./fig1-eps-converted-to.pdf> <./fig2-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig3.eps>
-(epstopdf)                    date: 2018-04-19 20:15:04
-(epstopdf)                    size: 45347 bytes
+(epstopdf)                    date: 2018-04-19 22:50:16
+(epstopdf)                    size: 44094 bytes
 (epstopdf)             Output file: <fig3-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-04-19 20:15:27
-(epstopdf)                    size: 18197 bytes
+(epstopdf)                    date: 2018-04-19 22:54:02
+(epstopdf)                    size: 17551 bytes
 (epstopdf)             Command: <epstopdf --outfile=fig3-eps-converted-to.pdf f
 ig3.eps>
-(epstopdf)             \includegraphics on input line 119.
+(epstopdf)             \includegraphics on input line 216.
 Package epstopdf Info: Output file is already uptodate.
-<fig3-eps-converted-to.pdf, id=16, pagebox=cropbox, 357.335pt x 290.08376pt>
+<fig3-eps-converted-to.pdf, id=34, pagebox=cropbox, 357.335pt x 291.0875pt>
 File: fig3-eps-converted-to.pdf Graphic file (type pdf)
 <use fig3-eps-converted-to.pdf>
-Package pdftex.def Info: fig3-eps-converted-to.pdf  used on input line 119. on 
-input line 119.
-Package pdftex.def Info: Requested size: 328.82707pt x 266.95554pt on input lin
-e 119.
+Package pdftex.def Info: fig3-eps-converted-to.pdf  used on input line 216. on 
+input line 216.
+Package pdftex.def Info: Requested size: 328.82707pt x 267.87924pt on input lin
+e 216.
+ [4 <./fig3-eps-converted-to.pdf>]
+[5]
 Package epstopdf Info: Source file: <fig4.eps>
-(epstopdf)                    date: 2018-04-19 20:17:51
-(epstopdf)                    size: 103471 bytes
+(epstopdf)                    date: 2018-04-19 23:38:48
+(epstopdf)                    size: 44184 bytes
 (epstopdf)             Output file: <fig4-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-04-19 20:18:20
-(epstopdf)                    size: 42873 bytes
+(epstopdf)                    date: 2018-04-19 23:39:15
+(epstopdf)                    size: 17077 bytes
 (epstopdf)             Command: <epstopdf --outfile=fig4-eps-converted-to.pdf f
 ig4.eps>
-(epstopdf)             \includegraphics on input line 126.
+(epstopdf)             \includegraphics on input line 312.
 Package epstopdf Info: Output file is already uptodate.
-<fig4-eps-converted-to.pdf, id=17, pagebox=cropbox, 361.35pt x 291.0875pt>
+<fig4-eps-converted-to.pdf, id=44, pagebox=cropbox, 356.33125pt x 290.08376pt>
 File: fig4-eps-converted-to.pdf Graphic file (type pdf)
 <use fig4-eps-converted-to.pdf>
-Package pdftex.def Info: fig4-eps-converted-to.pdf  used on input line 126. on 
-input line 126.
-Package pdftex.def Info: Requested size: 328.82707pt x 264.89003pt on input lin
-e 126.
- [2 <./fig2-eps-converted-to.pdf> <./fig3-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <fig5.eps>
-(epstopdf)                    date: 2018-04-19 20:17:55
-(epstopdf)                    size: 100421 bytes
-(epstopdf)             Output file: <fig5-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-04-19 20:18:21
-(epstopdf)                    size: 41980 bytes
-(epstopdf)             Command: <epstopdf --outfile=fig5-eps-converted-to.pdf f
-ig5.eps>
-(epstopdf)             \includegraphics on input line 133.
-Package epstopdf Info: Output file is already uptodate.
-<fig5-eps-converted-to.pdf, id=27, pagebox=cropbox, 357.335pt x 291.0875pt>
-File: fig5-eps-converted-to.pdf Graphic file (type pdf)
-<use fig5-eps-converted-to.pdf>
-Package pdftex.def Info: fig5-eps-converted-to.pdf  used on input line 133. on 
-input line 133.
-Package pdftex.def Info: Requested size: 328.82707pt x 267.87924pt on input lin
-e 133.
- [3 <./fig4-eps-converted-to.pdf> <./fig5-eps-converted-to.pdf>] (main.m
+Package pdftex.def Info: fig4-eps-converted-to.pdf  used on input line 312. on 
+input line 312.
+Package pdftex.def Info: Requested size: 328.82707pt x 267.70358pt on input lin
+e 312.
+ [6] (main.m
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 13.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
- [4] [5] [6] [7]
-[8]) (tauchen.m [9]) (rouwenhorst.m) (transition.m [10]) (policy_ip.m [11]
+
+[7 <./fig4-eps-converted-to.pdf>] [8] [9] [10] [11]) (tauchen.m) (rouwenhorst.m
+[12]) (transition.m [13]) (policy_ip.m [14]
 LaTeX Font Info:    Try loading font information for OML+cmr on input line 32.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
@@ -1113,26 +1117,33 @@ File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 32.
-) (solve_ip.m [12])
-(euler_ip.m) (policy_ca.m [13]) (solve_ca.m [14]) (euler_ca.m) (markovchain.m
-[15]) (markovprob.m [16]) [17] (6140_ps3.aux) ) 
+) (solve_ip.m) [15]
+(euler_ip.m) (policy_ca.m [16]) (solve_ca.m [17]) (euler_ca.m) (markovchain.m)
+[18] (markovprob.m) [19] (6140_ps3.aux) ) 
 Here is how much of TeX's memory you used:
- 17045 strings out of 493312
- 306829 string characters out of 3138896
- 540059 words of memory out of 3000000
- 20220 multiletter control sequences out of 15000+200000
- 12096 words of font info for 47 fonts, out of 3000000 for 9000
+ 17111 strings out of 493312
+ 307629 string characters out of 3138896
+ 520346 words of memory out of 3000000
+ 20280 multiletter control sequences out of 15000+200000
+ 13172 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,6n,54p,413b,2157s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on 6140_ps3.pdf (17 pages, 285781 bytes).
+ 55i,12n,54p,568b,2157s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+mi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy
+8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on 6140_ps3.pdf (19 pages, 298296 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
+ 139 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
