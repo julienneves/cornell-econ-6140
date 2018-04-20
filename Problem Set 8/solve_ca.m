@@ -5,7 +5,7 @@ function [x] = solve_ca(param,c, fspace, s)
 ns=length(s);
 
 a=.01*ones(ns,1);
-b=s(:,1)+exp(s(:,2))/(1+param.r);
+b=s+exp(max(param.ygrid))/(1+param.r);
 tol=1e-8; %tolerance level
 
 fa=euler_ca(a,c,fspace,s,param);

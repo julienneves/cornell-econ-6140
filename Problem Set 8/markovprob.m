@@ -4,8 +4,8 @@ function [Gl, TM, CDF, sz] = markovprob(mue, p, s, N, m)
 % mue = intercept of AR(1) process;
 % p = slope coeff. of AR(1) process;
 % s = std. dev. of residuals in AR(1) process;
-% N = # of grid points for the ‘z’ variable;
-% m = Density of the grid for ‘z’ variable;
+% N =  of grid points for the 'z' variable;
+% m = Density of the grid for 'z' variable;
 %% CODE:
 sz = s / ((1-p^2)^(1/2)); % Std. Dev. of z.
 zmin = -m * sz + mue/(1-p);
